@@ -6,88 +6,84 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="images/avatar.png">
   <style>
-    /* ─── COLORS – VS Code Dark-ish blue theme ───────────────────────── */
+    /* ─── COLOURS – VS Code blue theme ───────────────────────────── */
     :root{
-      --bg:#0d1117;          /* editor background */
-      --panel:#1e2a3a;       /* side panels / nav */
-      --accent:#388bfd;      /* bright blue accent */
-      --text:#d4d4d4;        /* normal light text */
-      --code-bg:#011627;     /* code block background */
+      --bg:#0d1117;
+      --panel:#1e2a3a;
+      --accent:#388bfd;
+      --text:#d4d4d4;
+      --code-bg:#011627;
       --code-comment:#6a9955;
       --code-string:#ce9178;
       --code-key:#9cdcfe;
     }
-    /* ─── RESET ──────────────────────────────────────────────────────── */
+    /* ─── RESET ─────────────────────────────────────────────────── */
     *{box-sizing:border-box;margin:0;padding:0}
     body{
-      background:var(--bg) url("images/bg-dots.jpg") center/cover fixed no-repeat;
+      background:var(--bg);
       font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
       overflow-x:hidden;
     }
     a{color:var(--accent)}
-    /* ─── NAV BAR ─────────────────────────────────────────────────────── */
+    /* ─── NAV BAR – bigger fonts ────────────────────────────────── */
     nav{
       position:sticky;top:0;z-index:10;
-      display:flex;gap:1.2rem;justify-content:flex-end;
-      background:var(--panel);padding:1rem 1.5rem;
-      box-shadow:0 2px 6px rgba(0,0,0,.4);
+      display:flex;gap:1.4rem;justify-content:flex-end;
+      background:var(--panel);padding:1.2rem 1.8rem;
+      box-shadow:0 3px 6px rgba(0,0,0,.5);
     }
     nav a{
       color:var(--text);text-decoration:none;
-      padding:0.55rem 1.2rem;border:2px solid var(--accent);
-      font-weight:600;font-size:1rem;border-radius:6px;
+      padding:0.7rem 1.5rem;border:3px solid var(--accent);
+      font-weight:700;font-size:1.3rem;border-radius:6px;
       transition:.2s;
     }
     nav a:hover,nav a.active{background:var(--accent);color:#fff}
-    /* ─── HERO ───────────────────────────────────────────────────────── */
+    /* ─── HERO – 30 % larger text & avatar ──────────────────────── */
     .hero{
       display:flex;flex-wrap:wrap;align-items:center;gap:3rem;
       min-height:85vh;
-      padding:3rem clamp(1rem,6vw,5rem);
+      padding:4rem clamp(1.2rem,7vw,6rem);
     }
     .hero h1{
-      font-size:clamp(2.6rem,7vw,5.2rem);
-      font-weight:800;line-height:1.15;color:#fff;
+      font-size:clamp(3.4rem,8vw,6.8rem);
+      font-weight:800;line-height:1.12;color:#fff;
     }
     .hero span.orange{color:#ffa657}
     .hero span.purple{color:#c586c0}
     .hero p{
-      font-size:clamp(1.3rem,3vw,2rem);
-      margin:1.5rem 0 2.5rem;color:#ddd;
+      font-size:clamp(1.8rem,3.5vw,2.6rem);
+      margin:2rem 0 3rem;color:#ddd;
     }
     .btn{
       display:inline-flex;align-items:center;gap:.6rem;
       background:var(--accent);color:#fff;border:none;
-      border-radius:50px;padding:1rem 2.7rem;
-      font-size:1.15rem;font-weight:600;cursor:pointer;
+      border-radius:50px;padding:1.3rem 3rem;
+      font-size:1.4rem;font-weight:600;cursor:pointer;
       transition:.2s;
     }
     .btn:hover{opacity:.88;transform:translateY(-1px)}
-    /* ─── AVATAR ─────────────────────────────────────────────────────── */
+    /* AVATAR – bigger, square, soft shadow */
     .avatar{
-      width:min(420px,50vw);aspect-ratio:1/1;border-radius:12px;
-      overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.6);
+      width:min(520px,60vw);aspect-ratio:1/1;border-radius:12px;
+      overflow:hidden;box-shadow:0 6px 15px rgba(0,0,0,.65);
     }
     .avatar img{width:100%;height:100%;object-fit:cover}
-    /* ─── CODE‑STYLE ABOUT PANEL (hidden by default) ─────────────────── */
+    /* ─── CODE‑STYLE ABOUT PANEL ───────────────────────────────── */
     #about{
       background:var(--code-bg);
-      max-width:1000px;margin:0 auto;padding:2rem 1.5rem;
-      border-left:6px solid var(--accent);
+      max-width:1200px;margin:0 auto;padding:3rem 2rem 4rem;
+      border-left:8px solid var(--accent);
       font-family:"Fira Code","Consolas","Courier New",monospace;
-      font-size:1.1rem;line-height:1.55;
-      opacity:0;max-height:0;overflow:hidden;
-      transition:max-height .6s ease,opacity .6s ease .1s;
+      font-size:1.9rem;line-height:1.6;
       white-space:pre-wrap;
     }
-    #about.show{opacity:1;max-height:500px}
-    /* Syntax colours */
+    /* Syntax highlighting */
     .comment{color:var(--code-comment)}
     .string{color:var(--code-string)}
     .key   {color:var(--code-key)}
-    /* Give a little breathing room below */
-    footer{height:8vh}
+    footer{height:10vh}
   </style>
 </head>
 <body>
@@ -110,25 +106,23 @@
   </div>
 </section>
 
-<!-- Hidden code‑styled about section -->
 <section id="about">
-<span class="comment">// aboutMe.js</span>
+<span class="comment">// about-me.md</span>
 
-<span class="key">const</span> aboutMe <span class="key">=</span> <span class="string">`Hi, I'm Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI, machine learning (ML), 3‑D modelling and technology. This website is dedicated to documenting my projects, achievements and experiences. Feel free to explore the site.`</span>;
+<span class="key">/**</span>
+<span class="string"> * Hi, I'm Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI,</span>
+<span class="string"> * machine learning (ML), 3‑D modelling and technology.</span>
+<span class="string"> * This website is dedicated to documenting my projects, achievements and experiences.</span>
+<span class="string"> * Feel free to explore the site.</span>
+<span class="key"> */</span>
 </section>
 
 <footer></footer>
 
 <script>
-  const btn   = document.getElementById('aboutBtn');
-  const about = document.getElementById('about');
-
-  btn.addEventListener('click', () => {
-    about.classList.add('show');                 // reveal the code block
-    setTimeout(()=>window.scrollTo({             // after it's tall enough
-      top: document.body.scrollHeight,
-      behavior:'smooth'
-    }), 100);                                    // tiny delay so height is calculated
+  document.getElementById('aboutBtn').addEventListener('click', () => {
+    // Smooth‑scroll all the way to the bottom so the code block is fully visible
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   });
 </script>
 </body>
