@@ -2,111 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Sparsh Robotics • Portfolio</title>
+  <title>Sparsh Robotics • Portfolio</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="images/avatar.png">
   <style>
-    /* ─── COLOURS (blue‑code theme) ─────────────────────────── */
+    /* ─── COLORS – VS Code Dark-ish blue theme ───────────────────────── */
     :root{
-      --bg:#0d1b2a;         /* overall page */
-      --nav:#001e3c;        /* navbar */
-      --accent:#2196f3;     /* bright blue */
-      --code-bg:#0a192f;    /* “editor” background */
-      --code-cyan:#80d4ff;  /* variable / prop */
-      --code-green:#a5ffa4; /* strings */
-      --code-comment:#6c8ab7;
-      --light:#fff;
+      --bg:#0d1117;          /* editor background */
+      --panel:#1e2a3a;       /* side panels / nav */
+      --accent:#388bfd;      /* bright blue accent */
+      --text:#d4d4d4;        /* normal light text */
+      --code-bg:#011627;     /* code block background */
+      --code-comment:#6a9955;
+      --code-string:#ce9178;
+      --code-key:#9cdcfe;
     }
-
-    /* ─── RESET / BASE ──────────────────────────────────────── */
+    /* ─── RESET ──────────────────────────────────────────────────────── */
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       background:var(--bg) url("images/bg-dots.jpg") center/cover fixed no-repeat;
-      font-family:Arial,Helvetica,sans-serif;
-      color:var(--light);
+      font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      overflow-x:hidden;
     }
-
-    /* ─── NAVBAR ────────────────────────────────────────────── */
+    a{color:var(--accent)}
+    /* ─── NAV BAR ─────────────────────────────────────────────────────── */
     nav{
       position:sticky;top:0;z-index:10;
-      display:flex;gap:1rem;justify-content:flex-end;
-      background:var(--nav);padding:1rem 1.5rem;
+      display:flex;gap:1.2rem;justify-content:flex-end;
+      background:var(--panel);padding:1rem 1.5rem;
+      box-shadow:0 2px 6px rgba(0,0,0,.4);
     }
     nav a{
-      color:var(--light);text-decoration:none;
-      padding:.6rem 1.3rem;border:2px solid var(--light);
-      font-weight:700;font-size:1rem;
+      color:var(--text);text-decoration:none;
+      padding:0.55rem 1.2rem;border:2px solid var(--accent);
+      font-weight:600;font-size:1rem;border-radius:6px;
+      transition:.2s;
     }
-    nav a:hover,nav a.active{background:var(--light);color:var(--nav)}
-
-    /* ─── HERO (title + avatar) ─────────────────────────────── */
+    nav a:hover,nav a.active{background:var(--accent);color:#fff}
+    /* ─── HERO ───────────────────────────────────────────────────────── */
     .hero{
-      display:flex;flex-wrap:wrap;align-items:center;
-      min-height:85vh;gap:3rem;
+      display:flex;flex-wrap:wrap;align-items:center;gap:3rem;
+      min-height:85vh;
       padding:3rem clamp(1rem,6vw,5rem);
     }
-    .hero h1{font-size:clamp(2.5rem,7vw,5rem);line-height:1.15}
-    .hero span.orange{color:orange}
-    .hero span.purple{color:var(--accent)}
-    .hero p{font-size:clamp(1.4rem,3vw,2rem);margin:1.5rem 0 2.5rem}
-
-    .btn{
-      background:var(--accent);color:var(--light);
-      border:none;border-radius:50px;
-      padding:1rem 2.8rem;font-size:1.2rem;font-weight:600;cursor:pointer;
-      margin-top:2rem;
+    .hero h1{
+      font-size:clamp(2.6rem,7vw,5.2rem);
+      font-weight:800;line-height:1.15;color:#fff;
     }
-    .btn:hover{opacity:.9}
-
+    .hero span.orange{color:#ffa657}
+    .hero span.purple{color:#c586c0}
+    .hero p{
+      font-size:clamp(1.3rem,3vw,2rem);
+      margin:1.5rem 0 2.5rem;color:#ddd;
+    }
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      background:var(--accent);color:#fff;border:none;
+      border-radius:50px;padding:1rem 2.7rem;
+      font-size:1.15rem;font-weight:600;cursor:pointer;
+      transition:.2s;
+    }
+    .btn:hover{opacity:.88;transform:translateY(-1px)}
+    /* ─── AVATAR ─────────────────────────────────────────────────────── */
     .avatar{
       width:min(420px,50vw);aspect-ratio:1/1;border-radius:12px;
-      overflow:hidden;flex:1 1 320px;
+      overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.6);
     }
     .avatar img{width:100%;height:100%;object-fit:cover}
-
-    /* ─── VS Code‑style panel ──────────────────────────────── */
-    .editor{
+    /* ─── CODE‑STYLE ABOUT PANEL (hidden by default) ─────────────────── */
+    #about{
       background:var(--code-bg);
-      border-radius:12px;
-      margin:0 auto 3.5rem;
-      width:min(1000px,90%);padding:2rem 2.5rem;
-      font-family:"Fira Code",Consolas,monospace;
-      font-size:1.1rem;line-height:1.6;
-      color:#c9d1d9;
-      max-height:0;opacity:0;overflow:hidden;
-      transition:max-height .7s ease,opacity .7s ease;
+      max-width:1000px;margin:0 auto;padding:2rem 1.5rem;
+      border-left:6px solid var(--accent);
+      font-family:"Fira Code","Consolas","Courier New",monospace;
+      font-size:1.1rem;line-height:1.55;
+      opacity:0;max-height:0;overflow:hidden;
+      transition:max-height .6s ease,opacity .6s ease .1s;
+      white-space:pre-wrap;
     }
-    .editor.show{max-height:600px;opacity:1}
-
-    .editor::before{/* fake top bar with traffic lights */
-      content:"";
-      position:absolute;top:.9rem;left:1.3rem;
-      width:42px;height:14px;border-radius:7px;
-      background:
-        radial-gradient(circle at 7px 7px,#ff605c 7px,transparent 8px),
-        radial-gradient(circle at 21px 7px,#ffbd44 7px,transparent 8px),
-        radial-gradient(circle at 35px 7px,#00ca4e 7px,transparent 8px);
-    }
-    .line{display:flex;}
-    .ln{width:3ch;text-align:right;margin-right:1ch;opacity:.35;user-select:none}
-    .cmt{color:var(--code-comment)}
-    .kw {color:var(--accent)}
-    .var{color:var(--code-cyan)}
-    .str{color:var(--code-green)}
+    #about.show{opacity:1;max-height:500px}
+    /* Syntax colours */
+    .comment{color:var(--code-comment)}
+    .string{color:var(--code-string)}
+    .key   {color:var(--code-key)}
+    /* Give a little breathing room below */
+    footer{height:8vh}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="active">HOME</a>
   <a href="#achievements">MY ACHIEVEMENTS</a>
   <a href="#projects">MY PROJECTS</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div>
+  <div class="hero__text">
     <h1>Hi There,<br>I'm <span class="orange">Sparsh Jain</span></h1>
     <p>I am into <span class="purple">embedded engineering</span></p>
     <button class="btn" id="aboutBtn">About Me ↓</button>
@@ -117,21 +110,25 @@
   </div>
 </section>
 
-<!-- VS CODE‑STYLE ABOUT PANEL -->
-<pre class="editor" id="editor"><code>
-<span class="line"><span class="ln">1</span><span class="cmt">// Cartoon Sparsh waving</span></span>
-<span class="line"><span class="ln">2</span><span class="kw">const</span> <span class="var">about</span> <span class="kw">=</span> <span class="str">`Hi, I'm Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI, machine learning (ML), 3‑D modelling and technology. This website is dedicated to documenting my projects, achievements and experiences. Feel free to explore the site.`</span>;</span>
-</code></pre>
+<!-- Hidden code‑styled about section -->
+<section id="about">
+<span class="comment">// aboutMe.js</span>
+
+<span class="key">const</span> aboutMe <span class="key">=</span> <span class="string">`Hi, I'm Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI, machine learning (ML), 3‑D modelling and technology. This website is dedicated to documenting my projects, achievements and experiences. Feel free to explore the site.`</span>;
+</section>
+
+<footer></footer>
 
 <script>
-  const btn = document.getElementById('aboutBtn');
-  const editor = document.getElementById('editor');
-  btn.addEventListener('click', ()=>{
-    editor.classList.add('show');       // reveal VS‑Code panel
-    window.scrollTo({                  // scroll to bottom
+  const btn   = document.getElementById('aboutBtn');
+  const about = document.getElementById('about');
+
+  btn.addEventListener('click', () => {
+    about.classList.add('show');                 // reveal the code block
+    setTimeout(()=>window.scrollTo({             // after it's tall enough
       top: document.body.scrollHeight,
       behavior:'smooth'
-    });
+    }), 100);                                    // tiny delay so height is calculated
   });
 </script>
 </body>
