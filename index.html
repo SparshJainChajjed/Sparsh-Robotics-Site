@@ -1,11 +1,100 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Sparsh’s Cool Site</title>
-  </head>
-  <body style="font-family:sans-serif; text-align:center; margin-top:50px;">
-    <h1>Hello, world! 👋</h1>
-    <p>I built this myself using GitHub Pages.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sparsh Robotics • Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="images/avatar.png">
+  <style>
+    :root{
+      --violet:#6336ff;
+      --yellow:#ffe600;
+      --dark:#000;
+      --light:#fff;
+      --spacing:1rem;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--dark);
+      background:url("images/bg-dots.jpg") center/cover fixed no-repeat;
+    }
+    /* NAV */
+    nav{
+      position:sticky;top:0;
+      display:flex;gap:var(--spacing);
+      justify-content:flex-end;
+      background:var(--dark);
+      padding:0.75rem 1.25rem;
+      z-index:10;
+    }
+    nav a{
+      color:var(--light);text-decoration:none;
+      padding:0.4rem 1rem;border:2px solid var(--light);
+      font-weight:700;
+    }
+    nav a:hover,nav a.active{background:var(--light);color:var(--dark);}
+    /* HERO */
+    .hero{
+      display:flex;flex-wrap:wrap;align-items:center;
+      min-height:85vh;padding:2rem clamp(1rem,5vw,4rem);
+      gap:3rem;
+    }
+    .hero h1{font-size:clamp(2rem,6vw,4.3rem);line-height:1.1}
+    .hero span.orange{color:orange}
+    .hero span.purple{color:purple}
+    .hero p{font-size:clamp(1rem,2.5vw,1.4rem);margin:1rem 0 2rem}
+    .btn{
+      background:var(--violet);color:var(--light);
+      border:none;border-radius:40px;padding:0.9rem 2.2rem;
+      font-size:1rem;cursor:pointer;
+    }
+    .btn:hover{opacity:0.85}
+    .avatar{
+      width:min(320px,40vw);aspect-ratio:1/1;
+      background:var(--yellow);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+    }
+    .avatar img{width:80%;height:auto}
+    /* INTRO */
+    .intro{
+      max-width:900px;margin:0 auto 3rem;
+      font-size:1.1rem;text-align:center;padding:0 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="active">HOME</a>
+  <a href="#achievements">MY ACHIEVEMENTS</a>
+  <a href="#projects">MY PROJECTS</a>
+</nav>
+
+<section class="hero">
+  <div class="hero__text">
+    <h1>Hi There,<br>I'm <span class="orange">Sparsh Jain</span></h1>
+    <p>I am into <span class="purple">embedded engineering</span></p>
+    <button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+      About Me ↓
+    </button>
+  </div>
+
+  <div class="avatar">
+    <img src="images/avatar.png" alt="Cartoon Sparsh waving">
+  </div>
+</section>
+
+<section id="about" class="intro">
+  <p>
+    Hi, I'm Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI,
+    machine learning (ML), 3‑D modelling and technology. This website is dedicated to
+    documenting my projects, achievements and experiences. Feel free to explore the site.
+  </p>
+</section>
+
+<!-- add your ACHIEVEMENTS and PROJECTS sections later -->
+
+</body>
 </html>
