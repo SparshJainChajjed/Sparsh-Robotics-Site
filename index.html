@@ -8,66 +8,96 @@
   <style>
     :root{
       --violet:#542fff;
-      --dark:#000;
+      --dark:#0d1117;
       --light:#fff;
-      --spacing:1rem;
+      --green:#7ee787;
+      --blue:#79c0ff;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       background:url("images/bg-dots.jpg") center/cover fixed no-repeat;
       font-family:Arial,Helvetica,sans-serif;
-      color:var(--dark);
+      color:var(--light);
     }
-
-    /* NAV — slightly taller & bigger font */
+    /* NAV */
     nav{
       position:sticky;top:0;z-index:10;
-      display:flex;gap:var(--spacing);justify-content:flex-end;
+      display:flex;gap:1rem;justify-content:flex-end;
       background:var(--dark);padding:1rem 1.5rem;
     }
     nav a{
       color:var(--light);text-decoration:none;
-      padding:0.55rem 1.2rem;border:3px solid var(--light);
+      padding:.6rem 1.3rem;border:2px solid var(--light);
       font-weight:700;font-size:1rem;
     }
     nav a:hover,nav a.active{background:var(--light);color:var(--dark)}
-
     /* HERO */
     .hero{
       display:flex;flex-wrap:wrap;align-items:center;
       min-height:85vh;gap:3rem;
       padding:3rem clamp(1rem,6vw,5rem);
     }
-    .hero h1{font-size:clamp(2.5rem,7vw,5rem);line-height:1.15}
-    .hero span.orange{color:orange}
-    .hero span.purple{color:purple}
-    .hero p{font-size:clamp(1.4rem,3vw,2rem);margin:1.5rem 0 2.5rem}
 
-    /* BIGGER button */
-    .btn{
-      display:inline-flex;align-items:center;gap:.6rem;
-      background:var(--violet);color:var(--light);
-      border:none;border-radius:50px;padding:1rem 2.7rem;
-      font-size:1.15rem;font-weight:600;cursor:pointer;
+    /* ── CODE EDITOR CARD ────────────────────── */
+    .code-card{
+      background:var(--dark);
+      border-radius:12px;
+      padding:1.7rem 2rem;
+      font-family:"Fira Code",Consolas,monospace;
+      font-size:clamp(1rem,2.4vw,1.5rem);
+      line-height:1.6;
+      position:relative;
+      color:#c9d1d9;
+      min-width:280px;
+      flex:1 1 340px;
+      max-width:650px;
     }
-    .btn:hover{opacity:0.88}
-
-    /* AVATAR — no circle, larger */
+    .code-card::before{ /* fake traffic‑light buttons */
+      content:"";
+      position:absolute;top:.8rem;left:1rem;
+      width:36px;height:12px;border-radius:6px;
+      background:
+        radial-gradient(circle at 6px 6px,#ff605c 6px,transparent 7px),
+        radial-gradient(circle at 18px 6px,#ffbd44 6px,transparent 7px),
+        radial-gradient(circle at 30px 6px,#00ca4e 6px,transparent 7px);
+    }
+    .line{
+      display:flex;
+    }
+    .ln{
+      width:2.5ch;text-align:right;margin-right:1ch;
+      user-select:none;opacity:.4;
+    }
+    /* fake syntax highlighting */
+    .kw{color:var(--blue)}
+    .st{color:#a5d6ff}
+    .prop{color:var(--green)}
+    /* AVATAR */
     .avatar{
-      width:min(420px,50vw);aspect-ratio:1/1;
-      display:flex;align-items:center;justify-content:center;
-      overflow:hidden;border-radius:12px; /* slight rounding */
+      width:min(420px,50vw);
+      aspect-ratio:1/1;
+      border-radius:12px;
+      overflow:hidden;
+      flex:1 1 320px;
     }
-    .avatar img{
-      width:100%;height:100%;object-fit:cover;
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    /* BUTTON */
+    .btn{
+      background:var(--violet);
+      color:var(--light);
+      border:none;border-radius:50px;
+      padding:1rem 2.8rem;
+      font-size:1.2rem;font-weight:600;
+      cursor:pointer;margin-top:2rem;
     }
-
-    /* ABOUT panel */
+    .btn:hover{opacity:.9}
+    /* ABOUT */
     #about{
       max-width:1000px;margin:0 auto 3rem;
       font-size:1.25rem;text-align:center;padding:0 1rem;
       opacity:0;max-height:0;overflow:hidden;
       transition:max-height .6s ease,opacity .6s ease .1s;
+      color:var(--dark);
     }
     #about.show{opacity:1;max-height:350px}
   </style>
@@ -81,12 +111,15 @@
 </nav>
 
 <section class="hero">
-  <div class="hero__text">
-    <h1>Hi There,<br>I'm <span class="orange">Sparsh Jain</span></h1>
-    <p>I am into <span class="purple">embedded engineering</span></p>
-    <button class="btn" id="aboutBtn">About Me ↓</button>
+  <!-- Code‑editor style card -->
+  <div class="code-card">
+    <div class="line"><span class="ln">1</span><span class="kw">const</span> <span class="prop">name</span> <span class="kw">=</span> <span class="st">"Sparsh&nbsp;Jain"</span>;</div>
+    <div class="line"><span class="ln">2</span><span class="kw">const</span> <span class="prop">age</span>  <span class="kw">=</span> <span class="st">14</span>;</div>
+    <div class="line"><span class="ln">3</span><span class="kw">const</span> <span class="prop">focus</span> <span class="kw">=</span> <span class="st">"embedded&nbsp;engineering"</span>;</div>
+    <button class="btn" id="aboutBtn">About&nbsp;Me ↓</button>
   </div>
 
+  <!-- Avatar -->
   <div class="avatar">
     <img src="images/avatar.png" alt="Cartoon Sparsh waving">
   </div>
@@ -101,12 +134,13 @@
 </section>
 
 <script>
-  document.getElementById('aboutBtn').addEventListener('click',()=>{
-    const panel=document.getElementById('about');
-    panel.classList.toggle('show');
-    panel.scrollIntoView({behavior:'smooth',block:'start'});
+  const aboutBtn = document.getElementById('aboutBtn');
+  aboutBtn.addEventListener('click', () => {
+    const panel = document.getElementById('about');
+    panel.classList.add('show');           // reveal text
+    // smooth scroll to very bottom of page
+    window.scrollTo({top: document.body.scrollHeight, behavior:'smooth'});
   });
 </script>
 </body>
 </html>
-
