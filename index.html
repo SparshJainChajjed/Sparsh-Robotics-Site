@@ -6,166 +6,239 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="images/avatar.png">
   <style>
-    /* ── VS‑Code–style palette ───────────────────────────── */
-    :root{
-      --bg:#0d1117;
-      --panel:#1e2a3a;
-      --accent:#388bfd;
-      --text:#d4d4d4;
-      --string:#ce9178;
-      --comment:#6a9955;
-      --key:#9cdcfe;
+    /* ── VS Code–style palette ─────────────────────────────────── */
+    :root {
+      --bg: #0d1117;
+      --panel: #1e2a3a;
+      --accent: #388bfd;
+      --text: #d4d4d4;
+      --string: #ce9178;
+      --comment: #6a9955;
+      --key: #9cdcfe;
     }
     /* RESET */
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{background:var(--bg);font-family:Segoe UI,Roboto,Arial,sans-serif;color:var(--text);line-height:1.6}
-    a{color:var(--accent);text-decoration:none}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family:Segoe UI,Roboto,Arial,sans-serif; line-height:1.6 }
+    a { color: var(--accent); text-decoration: none; }
 
     /* NAV */
-    nav{position:sticky;top:0;z-index:10;display:flex;gap:1.4rem;justify-content:flex-end;
-         background:var(--panel);padding:1.2rem 1.8rem;box-shadow:0 3px 6px rgba(0,0,0,.5)}
-    nav a{padding:.7rem 1.4rem;font-weight:700;font-size:1.3rem;border:3px solid var(--accent);border-radius:6px}
-    nav a:hover,nav a.active{background:var(--accent);color:#fff}
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; gap:1rem; justify-content: flex-end;
+      background: var(--panel); padding:1rem 1.5rem;
+      box-shadow: 0 3px 6px rgba(0,0,0,.5);
+    }
+    nav a {
+      padding:.6rem 1.2rem; font-weight:600; font-size:1.1rem;
+      border:2px solid var(--accent); border-radius:6px;
+      transition:.2s;
+    }
+    nav a:hover, nav a.active {
+      background: var(--accent); color:#fff;
+    }
 
     /* HERO */
-    .hero{display:flex;flex-wrap:wrap;align-items:center;gap:5rem;padding:4rem clamp(1.2rem,7vw,6rem);min-height:85vh}
-    .hero h1{font-size:clamp(3.4rem,8vw,6.8rem);font-weight:800;line-height:1.12;color:#fff}
-    .orange{color:#ffa657}.purple{color:#c586c0}
-    .hero p{font-size:clamp(1.8rem,3.5vw,2.6rem);margin:2rem 0 3rem;color:#ddd}
-    .btn{display:inline-flex;align-items:center;gap:.6rem;background:var(--accent);color:#fff;border:none;
-         border-radius:50px;padding:1.3rem 3rem;font-size:1.4rem;font-weight:600;cursor:pointer;transition:.2s}
-    .btn:hover{opacity:.88;transform:translateY(-1px)}
+    .hero {
+      display:flex; flex-wrap:wrap; align-items:center; gap:4rem;
+      padding:4rem clamp(1rem,5vw,4rem); min-height:80vh;
+    }
+    .hero h1 {
+      font-size:clamp(3rem,8vw,6rem); font-weight:800; line-height:1.1; color:#fff;
+    }
+    .orange { color:#ffa657 }
+    .purple { color:#c586c0 }
+    .hero p {
+      margin:2rem 0 3rem; font-size:clamp(1.6rem,3vw,2.2rem); color:#ddd;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:.6rem;
+      background:var(--accent); color:#fff; border:none; border-radius:50px;
+      padding:1.2rem 2.5rem; font-size:1.3rem; font-weight:600;
+      cursor:pointer; transition:.2s;
+    }
+    .btn:hover { opacity:.9; transform:translateY(-1px); }
 
     /* AVATAR */
-    .avatar{width:min(620px,65vw);aspect-ratio:1/1;overflow:hidden;clip-path:circle(50% at 50% 50%);
-            box-shadow:0 6px 15px rgba(0,0,0,.65)}
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .avatar {
+      width:min(620px,65vw); aspect-ratio:1/1; overflow:hidden;
+      clip-path:circle(50% at 50% 50%);
+      box-shadow:0 6px 15px rgba(0,0,0,.65);
+    }
+    .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
 
-    /* ABOUT typing */
-    #about{max-width:1000px;margin:2rem auto 8vh;padding:0 1rem;font-size:1.9rem;white-space:pre-wrap}
-    .string{color:var(--string)}.comment{color:var(--comment)}.key{color:var(--key)}
+    /* ABOUT (typed) */
+    #about {
+      max-width:900px; margin:2rem auto; padding:0 1rem;
+      font-size:1.8rem; white-space: pre-wrap;
+    }
+    .string { color: var(--string); }
+    .comment { color: var(--comment); }
+    .key     { color: var(--key); }
+
+    /* SPACER to scroll FAR down */
+    #spacer { height: 100vh; }
 
     /* ACHIEVEMENTS */
-    #achievements{padding:3rem 1rem;max-width:900px;margin:0 auto}
-    #achievements h2{font-size:2.8rem;color:var(--accent);margin-bottom:2rem;text-align:center}
-    #achievements h3{color:var(--accent);font-size:1.9rem;margin:1.5rem 0 .5rem}
-    #achievements p{font-size:1.35rem}
+    #achievements { padding:3rem 1rem; max-width:900px; margin:0 auto; }
+    #achievements h2 {
+      font-size:2.6rem; color:var(--accent); text-align:center; margin-bottom:1.5rem;
+    }
+    .stats {
+      display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-bottom:2.5rem;
+    }
+    .stat {
+      background:var(--panel); padding:1.5rem 2rem; border-radius:8px;
+      box-shadow:0 4px 10px rgba(0,0,0,.4); text-align:center; min-width:200px;
+    }
+    .stat-label { display:block; font-size:1.1rem; margin-bottom:.5rem; color:var(--text); }
+    .stat-number { font-size:2.8rem; font-weight:700; color:#fff; }
 
-    footer{height:10vh}
+    #achievements h3 {
+      font-size:1.8rem; color:var(--accent); margin:1.5rem 0 .5rem;
+    }
+    #achievements p { font-size:1.2rem; margin-bottom:1rem; }
+
+    footer { height:6vh; }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#top" class="active">HOME</a>
-  <a href="#achievements">MY&nbsp;ACHIEVEMENTS</a>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a href="#top" class="active">HOME</a>
+    <a href="#achievements">MY ACHIEVEMENTS</a>
+  </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div class="hero__text">
-    <h1>Hi There,<br>I'm <span class="orange">Sparsh&nbsp;Jain</span></h1>
-    <p>I am into <span class="purple">embedded engineering</span></p>
-    <button class="btn" id="aboutBtn">About&nbsp;Me&nbsp;↓</button>
-  </div>
+  <!-- HERO + AVATAR -->
+  <section class="hero" id="top">
+    <div>
+      <h1>Hi There,<br>I'm <span class="orange">Sparsh Jain</span></h1>
+      <p>I am into <span class="purple">embedded engineering</span></p>
+      <button class="btn" id="aboutBtn">About Me ↓</button>
+    </div>
+    <div class="avatar">
+      <img src="images/avatar.png" alt="Cartoon Sparsh waving">
+    </div>
+  </section>
 
-  <div class="avatar">
-    <img src="images/avatar.png" alt="Cartoon Sparsh waving">
-  </div>
-</section>
+  <!-- ABOUT typing -->
+  <section id="about"></section>
 
-<!-- ABOUT (typed) -->
-<section id="about"></section>
+  <!-- SPACER -->
+  <div id="spacer"></div>
 
-<!-- spacer so scroll is long -->
-<div style="height:120vh"></div>
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <h2>My Achievements</h2>
 
-<!-- ACHIEVEMENTS (full text) -->
-<section id="achievements">
-  <h2>My Achievements</h2>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-label">Competitions Participated</span>
+        <span class="stat-number" data-target="83">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Competitions Won</span>
+        <span class="stat-number" data-target="24">0</span>
+      </div>
+    </div>
 
-  <p><strong>Competitions Participated&nbsp;&nbsp;83<br>
-  Competitions Won&nbsp;&nbsp;24</strong></p>
+    <h3>National Automation Robotics Challenge 2024</h3>
+    <p>Sparsh Jain of class 8 from Delhi Public School, Bangalore South participated in the National Automation Robotics Challenge 2024, a 6‑hour hackathon held at SRM Institute of Technology on 20th September 2024. Competing in the Automation category, Sparsh, along with his teammate, developed a system that automates irrigation for farmers by measuring soil moisture, using a weather API and an AI model to predict how long crops need to be watered. Unlike basic systems that water based only on dryness, their innovation used advanced data analytics to deliver precise predictions with 95 % accuracy. They secured first place, winning a cash prize worth ₹ 7 500.</p>
 
-  <h3>National Automation Robotics Challenge 2024</h3>
-  <p>Sparsh Jain of 8N from Delhi Public School, Bangalore South participated in the National Automation Robotics Challenge 2024, a 6‑hour hackathon held at SRM Institute of Technology on 20 September 2024. Competing in the Automation category, Sparsh, along with his teammate, developed a system that automates irrigation for farmers by measuring soil moisture, using a weather API and an AI model to predict how long crops need to be watered. Unlike basic systems that water based only on dryness, their innovation used advanced data analytics to deliver precise predictions with 95 % accuracy. They secured first place, winning a cash prize worth ₹ 7 500.</p>
+    <h3>IEEE REPower Competition</h3>
+    <p>Sparsh Jain of Delhi Public School, Bangalore South, secured 3rd position in the prestigious REPower: Revolutionize Sustainable Energy Future Competition for his innovative idea <strong>BHOOMI</strong>. This idea‑pitching competition was organized by the Institute of Electrical and Electronics Engineers (IEEE) PES R10 during the IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2024 summit held in Bangalore on 10th November 2024.</p>
 
-  <h3>IEEE REPower competition</h3>
-  <p>Sparsh Jain, of Delhi Public School, Bangalore South, secured 3rd position in the prestigious REPower: Revolutionize Sustainable Energy Future Competition for his innovative idea BHOOMI. This idea‑pitching competition was organized by the Institute of Electrical and Electronics Engineers (IEEE) PES R10 during the IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2024 summit held in Bangalore on 10 November 2024.</p>
+    <h3>Innovate H₂O Ideathon 2024</h3>
+    <p>The Innovate H₂O Ideathon in February 2024, organized by Vishnu Foundation TBI and IFIA Bharat, brought together 88 teams to tackle water‑management challenges. Team Aqua Boat — including class 8 grader Sparsh Jain — presented an AI‑powered irrigation system that optimizes water usage for crops using a neural network on a Raspberry Pi. His team's innovative solution earned the winning award for its potential to transform sustainable farming by enhancing crop health and increasing yields, plus ₹ 10 000 funding.</p>
 
-  <h3>Innovate H₂O Ideathon</h3>
-  <p>The Innovate H₂O Ideathon in February 2024, organized by Vishnu Foundation TBI and IFIA Bharat, brought together 88 teams. Team Aqua Boat, consisting of 8th‑grader Sparsh Jain and team, presented an AI‑powered irrigation system that optimizes water usage for crops using a neural network on a Raspberry Pi. His team's innovative solution earned the winning award plus ₹ 10 000 funding.</p>
+    <h3>Atal Marathon 2024 – Soil Smart</h3>
+    <p>Sparsh Jain from Delhi Public School, Bangalore South was awarded a Certificate of Achievement for the project <strong>Soil Smart</strong>. His team ranked among the top 500 teams in the ATL Marathon 2023–24 (Atal Innovation Mission, NITI Aayog). Soil Smart is an IoT‑driven soil‑health analyzer combining pH, moisture, and temperature sensors with a Raspberry Pi Zero and custom AI model to predict optimal fertilizer and calcium dosages. It delivers real‑time recommendations via a web dashboard, helping farmers tailor soil amendments and crop choices for maximum yield.</p>
 
-  <h3>Atal Marathon 2024 – Project Soil Smart</h3>
-  <p>Sparsh Jain’s team ranked among the top 500 in the ATL Marathon 2023–24 organized by Atal Innovation Mission, NITI Aayog. Soil Smart is an IoT‑driven soil‑health analyzer that predicts optimal fertilizer and calcium dosages via a web dashboard, earning government funding and mentorship.</p>
+    <h3>Elixir 8.0 (St Joseph’s University)</h3>
+    <p>Sparsh Jain participated in the university‑level open day Elixir 2024 at St Joseph’s University, Bengaluru, on 19th August 2024. His team contributed to DPS Bangalore South winning the overall contribution trophy.</p>
 
-  <h3>Elixir 8.0</h3>
-  <p>Sparsh Jain participated in the university‑level open day Elixir 2024 at St Joseph's University, Bengaluru, on 19 August 2024, helping his school win the overall contribution trophy.</p>
+    <h3>World Robotics Olympiad – RoboMission (2nd Place)</h3>
+    <p>Sparsh Jain secured 2nd place in the RoboMission Category at the World Robot Olympiad (WRO) Championship organized by the India STEM Foundation, demonstrating innovation and excellence in autonomous robotics challenges.</p>
 
-  <h3>World Robotics Olympiad – RoboMission (2nd Place)</h3>
-  <p>Sparsh Jain secured 2nd place in the RoboMission Category at World Robot Olympiad, showcasing creativity and excellence in autonomous robotics.</p>
+    <h3>MCA Codenest Hackathon 2025 – Winner</h3>
+    <p>On 1st February 2025, Sparsh Jain won the MCA Codenest Hackathon, earning a Certificate of Achievement for his exceptional coding and problem‑solving skills.</p>
 
-  <h3>MCA Codenest Hackathon 2025 – Winner</h3>
-  <p>On 1 February 2025, Sparsh Jain won the MCA Codenest Hackathon, earning a Certificate of Achievement for outstanding coding and problem‑solving.</p>
+    <h3>Green Pioneers Hackathon 2025 – Most Impactful Project</h3>
+    <p>Sparsh Jain of Delhi Public School, Bangalore South secured the Potentially Most Impactful Project award at YPStem’s Green Pioneers Hackathon on 1st March 2025 for his project <strong>Bhoomi</strong>. Utilizing a pH sensor and IoT analytics, Bhoomi offers farmers real‑time nutrient insights. The innovation won prizes worth over ₹ 5 000.</p>
 
-  <h3>Green Pioneers Hackathon – Most Impactful Project</h3>
-  <p>Sparsh’s project Bhoomi won “Potentially Most Impactful Project” at YPStem’s Green Pioneers Hackathon on 1 March 2025, along with prizes worth over ₹ 5 000.</p>
+    <h3>Biomimicry Build‑a‑thon – Honorable Mention</h3>
+    <p>At the IBYS Biomimicry Build‑a‑thon on 4th February 2025, Sparsh Jain received an Honorable Mention and a ₹ 1 000 prize for his nature‑inspired design.</p>
 
-  <h3>Biomimicry Build‑a‑thon – Honorable Mention</h3>
-  <p>Sparsh received an Honorable Mention and ₹ 1 000 at the IBYS Biomimicry Build‑a‑thon on 4 February 2025.</p>
+    <h3>Student Hacks 2025 – Top 20 Team</h3>
+    <p>Sparsh Jain placed among the top 20 teams at Student Hacks 2025 (Devpost, 17th January 2025) for his innovative tech solutions.</p>
 
-  <h3>Student Hacks 2025 – Top 20 Team</h3>
-  <p>Ranked among the top 20 teams worldwide at Student Hacks 2025 (Devpost, 17 January 2025).</p>
+    <h3>Junior Make‑a‑thon 2025 – Honorable Mention</h3>
+    <p>From 4th–7th January 2025 at the Shaastra Junior Make‑a‑thon (IIT Madras), Sparsh Jain’s team earned an Honorable Mention for <em>Predict‑A‑Quake</em>, an AI model for early earthquake warnings.</p>
 
-  <h3>Junior Make‑a‑thon 2025 – Honorable Mention</h3>
-  <p>At IIT Madras Shaastra Junior Make‑a‑thon (4‑7 January 2025), Sparsh’s team earned an Honorable Mention for Predict‑A‑Quake.</p>
+    <h3>Hack 4 Humanity 2024 – Honorable Mention</h3>
+    <p>At Hack 4 Humanity (judged 3rd–6th December 2024), Sparsh Jain received an Honorable Mention for his practical, impactful solution.</p>
 
-  <h3>Hack 4 Humanity 2024 – Honorable Mention</h3>
-  <p>Recognised for innovation and impact at Hack 4 Humanity (judged 3‑6 December 2024).</p>
+    <h3>Fabguard Innovation Challenge – ₹ 5 000 Prize</h3>
+    <p>Sparsh Jain participated in the Fabguard Innovation Challenge and won ₹ 5 000 for his project <strong>Bhoomi</strong>, showcasing problem‑solving in sustainable agriculture.</p>
 
-  <h3>Fabguard Innovation Challenge – ₹ 5 000 Prize</h3>
-  <p>Won ₹ 5 000 for Bhoomi at the Fabguard Innovation Challenge.</p>
+    <h3>Intel AI Fest – Micro‑learning Certificate</h3>
+    <p>On 10th March 2025, Sparsh Jain successfully completed Intel and Atal Innovation Mission’s AI for Entrepreneurship micro‑learning module, gaining essential 21st‑century skills.</p>
 
-  <h3>Intel AI Fest – Micro‑learning Certificate</h3>
-  <p>Completed Intel & Atal Innovation Mission’s AI for Entrepreneurship module on 10 March 2025.</p>
+    <h3>Raman Young Science Innovator Award 2024 – National Qualifier</h3>
+    <p>Sparsh Jain was recognized as a National Qualifier in the Raman Young Science Innovator Award 2024 for <em>Neuroshield</em>, a smart‑helmet system ensuring two‑wheeler rider safety via sensor‑based head detection and IoT automation.</p>
 
-  <h3>Raman Young Science Innovator Award 2024 – National Qualifier</h3>
-  <p>Recognised nationally for Neuroshield, a smart helmet ensuring riders wear helmets before starting a two‑wheeler.</p>
+    <h3>MEGA Hackathon 2025 – Sustainability Award</h3>
+    <p>At the international MEGA Hackathon 2025, Sparsh Jain won the Sustainability Award (prizes worth over $100) for his affordable IoT‑based soil‑analysis solution <strong>Bhoomi</strong>.</p>
+  </section>
 
-  <h3>MEGA Hackathon 2025 – Sustainability Award</h3>
-  <p>Project Bhoomi won the Sustainability Award (prizes worth over $100) at MEGA Hackathon 2025 for its affordable IoT soil‑analysis system.</p>
-</section>
+  <footer></footer>
 
-<footer></footer>
+  <!-- SCRIPTS -->
+  <script>
+    // ABOUT typing animation
+    const aboutBtn = document.getElementById('aboutBtn');
+    const aboutBox = document.getElementById('about');
+    const lines = [
+      '<span class="string">Hi, I\'m Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI, machine learning (ML), 3‑D modelling and technology.</span>',
+      '<span class="comment">This website is dedicated to documenting my projects, achievements and experiences.</span>',
+      '<span class="key">Feel free to explore the site.</span>'
+    ];
+    aboutBtn.addEventListener('click', () => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+      if(aboutBox.dataset.done) return;
+      let line=0,char=0;
+      (function type(){
+        if(line===lines.length){
+          aboutBox.dataset.done='y';
+          window.scrollTo({ top: document.body.scrollHeight, behavior:'smooth' });
+          return;
+        }
+        if(char===0) aboutBox.innerHTML+=`<div id="L${line}"></div>`;
+        document.getElementById('L'+line).innerHTML = lines[line].slice(0,++char);
+        window.scrollTo({ top: document.body.scrollHeight });
+        if(char===lines[line].length){
+          line++; char=0;
+          aboutBox.innerHTML+='<br>';
+          setTimeout(type,350);
+        } else setTimeout(type,35);
+      })();
+    });
 
-<!-- SCRIPTS -->
-<script>
-/* typing animation for About section */
-const aboutLines=[
-  '<span class="string">Hi, I\'m Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI, machine learning (ML), 3‑D modelling and technology.</span>',
-  '<span class="comment">This website is dedicated to documenting my projects, achievements and experiences.</span>',
-  '<span class="key">Feel free to explore the site.</span>'
-];
-const aboutBtn=document.getElementById('aboutBtn');
-const aboutBox=document.getElementById('about');
-aboutBtn.addEventListener('click',()=>{
-  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
-  if(aboutBox.dataset.done)return;
-  let line=0,char=0;
-  (function type(){
-    if(line===aboutLines.length){
-      aboutBox.dataset.done='y';
-      window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
-      return;
-    }
-    if(char===0)aboutBox.innerHTML+=`<div id="L${line}"></div>`;
-    document.getElementById('L'+line).innerHTML=aboutLines[line].slice(0,++char);
-    window.scrollTo({top:document.body.scrollHeight});
-    if(char===aboutLines[line].length){line++;char=0;aboutBox.innerHTML+='<br>';setTimeout(type,350);}
-    else setTimeout(type,35);
-  })();
-});
-</script>
+    // COUNTERS
+    document.querySelectorAll('.stat-number').forEach(el => {
+      const target = +el.dataset.target;
+      let curr = 0;
+      const step = Math.ceil(target/60);
+      const update = () => {
+        curr += step;
+        el.textContent = curr>target? target : curr;
+        if(curr < target) requestAnimationFrame(update);
+      };
+      // observe when visible
+      new IntersectionObserver(entries => {
+        if(entries[0].isIntersecting) update();
+      },{threshold:.5}).observe(el);
+    });
+  </script>
 </body>
 </html>
