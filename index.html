@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <title>Sparsh Robotics • Portfolio</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="icon" href="image/avatar.png">
+  <link rel="icon" href="images/avatar.png">
   <style>
-    /* ─── COLOURS – VS Code blue theme ───────────────────────────── */
+    /* ──  COLOURS – VS Code blue theme  ───────────────────────────── */
     :root{
       --bg:#0d1117;
       --panel:#1e2a3a;
@@ -17,16 +17,16 @@
       --code-string:#ce9178;
       --code-key:#9cdcfe;
     }
-    /* ─── RESET ─────────────────────────────────────────────────── */
+    /* ──  RESET  ──────────────────────────────────────────────────── */
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       background:var(--bg);
       font-family:Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
-      overflow-x:hidden;
     }
     a{color:var(--accent)}
-    /* ─── NAV BAR – bigger fonts ────────────────────────────────── */
+
+    /* ──  NAV BAR  ───────────────────────────────────────────────── */
     nav{
       position:sticky;top:0;z-index:10;
       display:flex;gap:1.4rem;justify-content:flex-end;
@@ -40,7 +40,8 @@
       transition:.2s;
     }
     nav a:hover,nav a.active{background:var(--accent);color:#fff}
-    /* ─── HERO – 30 % larger text & avatar ──────────────────────── */
+
+    /* ──  HERO  ─────────────────────────────────────────────────── */
     .hero{
       display:flex;flex-wrap:wrap;align-items:center;gap:3rem;
       min-height:85vh;
@@ -64,13 +65,20 @@
       transition:.2s;
     }
     .btn:hover{opacity:.88;transform:translateY(-1px)}
-    /* AVATAR – bigger, square, soft shadow */
+
+    /* ──  AVATAR  (perfect circle, no gap)  ─────────────────────── */
     .avatar{
-      width:min(520px,60vw);aspect-ratio:1/1;border-radius:12px;
-      overflow:hidden;box-shadow:0 6px 15px rgba(0,0,0,.65);
+      width:min(520px,60vw);
+      aspect-ratio:1/1;
+      overflow:hidden;
+      clip-path:circle(50% at 50% 50%);
+      box-shadow:0 6px 15px rgba(0,0,0,.65);
     }
-    .avatar img{width:100%;height:100%;object-fit:cover}
-    /* ─── CODE‑STYLE ABOUT PANEL ───────────────────────────────── */
+    .avatar img{
+      width:100%;height:100%;object-fit:cover;display:block;
+    }
+
+    /* ──  CODE‑STYLE ABOUT PANEL  ───────────────────────────────── */
     #about{
       background:var(--code-bg);
       max-width:1200px;margin:0 auto;padding:3rem 2rem 4rem;
@@ -79,10 +87,9 @@
       font-size:1.9rem;line-height:1.6;
       white-space:pre-wrap;
     }
-    /* Syntax highlighting */
     .comment{color:var(--code-comment)}
-    .string{color:var(--code-string)}
-    .key   {color:var(--code-key)}
+    .string {color:var(--code-string)}
+    .key    {color:var(--code-key)}
     footer{height:10vh}
   </style>
 </head>
@@ -121,7 +128,6 @@
 
 <script>
   document.getElementById('aboutBtn').addEventListener('click', () => {
-    // Smooth‑scroll all the way to the bottom so the code block is fully visible
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   });
 </script>
