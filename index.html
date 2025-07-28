@@ -22,95 +22,96 @@
 
     /* NAV */
     nav {
-      position: sticky; top: 0; z-index: 10;
-      display: flex; justify-content: flex-end; gap: 1rem;
-      background: var(--panel); padding: 1rem 1.5rem;
-      box-shadow: 0 3px 6px rgba(0,0,0,.5);
+      position: sticky; top:0; z-index:10;
+      display:flex; justify-content:flex-end; gap:1rem;
+      background:var(--panel); padding:1rem 1.5rem;
+      box-shadow:0 3px 6px rgba(0,0,0,.5);
     }
     nav a {
-      padding: .6rem 1.2rem;
-      border: 2px solid var(--accent);
-      border-radius: 6px;
-      font-weight: 600; font-size: 1.1rem;
-      transition: .2s;
+      padding:.6rem 1.2rem; border:2px solid var(--accent);
+      border-radius:6px; font-weight:600; font-size:1.1rem;
+      transition:.2s;
     }
-    nav a:hover, nav a.active { background: var(--accent); color: #fff; }
+    nav a:hover, nav a.active { background:var(--accent); color:#fff; }
 
     /* HERO */
     .hero {
-      display: flex; align-items: center; gap: 2rem;
-      padding: 3rem clamp(1rem,6vw,3rem); min-height: 60vh;
+      display:flex; flex-wrap:wrap; align-items:center; gap:3rem;
+      padding:4rem clamp(1rem,6vw,4rem); min-height:80vh;
     }
-    .hero__text {
-      flex: 1;
-    }
+    .hero__text { flex:1; }
     .hero h1 {
-      font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 800; color: #fff; line-height:1.1;
+      font-size: clamp(2.5rem,6vw,4.5rem);
+      font-weight:800; color:#fff; line-height:1.1;
     }
-    .hero .orange { color: #ffa657; }
+    .orange { color:#ffa657; } .purple { color:#c586c0; }
     .hero p {
-      margin: 1.5rem 0 2rem; font-size: clamp(1.4rem,3vw,2rem); color: #ddd;
+      margin:1.5rem 0 2rem; font-size:clamp(1.4rem,3vw,2rem); color:#ddd;
     }
     .btn {
-      display: inline-flex; align-items: center; gap: .6rem;
-      background: var(--accent); color: #fff; border: none; border-radius: 50px;
-      padding: 1rem 2rem; font-size: 1.2rem; font-weight: 600;
-      cursor: pointer; transition: .2s;
+      display:inline-flex; align-items:center; gap:.6rem;
+      background:var(--accent); color:#fff; border:none; border-radius:50px;
+      padding:1rem 2rem; font-size:1.2rem; font-weight:600;
+      cursor:pointer; transition:.2s;
     }
-    .btn:hover { opacity: .9; transform: translateY(-1px); }
+    .btn:hover { opacity:.9; transform:translateY(-1px); }
 
+    /* AVATAR – larger & smooth round */
     .avatar {
-      width: 350px; height: 350px; /* larger */
-      overflow: hidden; border-radius: 50%;
+      width: 400px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      overflow: hidden;
       box-shadow: 0 6px 15px rgba(0,0,0,.65);
       flex-shrink: 0;
     }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .avatar img {
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
 
     /* ABOUT */
     #about {
-      max-width: 800px; margin: 2rem auto; padding: 0 1rem;
-      font-size: 1.8rem; white-space: pre-wrap;
+      max-width:800px; margin:2rem auto; padding:0 1rem;
+      font-size:1.8rem; white-space:pre-wrap;
     }
-    .string { color: var(--string); }
-    .comment { color: var(--comment); }
-    .key { color: var(--key); }
+    .string{color:var(--string)} .comment{color:var(--comment)} .key{color:var(--key)}
 
     /* SPACER */
-    #spacer { height: 100vh; }
+    #spacer { height:100vh; }
 
     /* ACHIEVEMENTS */
     #achievements {
-      padding: 3rem 1rem 5rem; max-width: 800px; margin: 0 auto;
+      padding:3rem 1rem 5rem; max-width:800px; margin:0 auto;
     }
     #achievements h2 {
-      font-size: 2.5rem; color: var(--accent);
-      text-align: center; margin-bottom: 2rem;
+      font-size:2.5rem; color:var(--accent);
+      text-align:center; margin-bottom:2rem;
     }
     .stats {
-      display: flex; flex-wrap: wrap; gap: 2rem;
-      justify-content: center; margin-bottom: 3rem;
+      display:flex; flex-wrap:wrap; gap:2rem;
+      justify-content:center; margin-bottom:3rem;
     }
     .stat {
-      background: var(--panel); padding: 1.5rem 2rem;
-      border-radius: 8px; min-width: 180px; text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,.4);
+      background:var(--panel); padding:1.5rem 2rem;
+      border-radius:8px; min-width:180px; text-align:center;
+      box-shadow:0 4px 10px rgba(0,0,0,.4);
     }
-    .stat-label { display: block; font-size: 1rem; margin-bottom: .3rem; }
-    .stat-number { font-size: 2.4rem; font-weight: 700; color: #fff; }
+    .stat-label{display:block; font-size:1rem; margin-bottom:.3rem;}
+    .stat-number{font-size:2.4rem; font-weight:700; color:#fff;}
     #achievements h3 {
-      font-size: 1.6rem; color: var(--accent); margin: 1.2rem 0 .5rem;
+      font-size:1.6rem; color:var(--accent);
+      margin:1.2rem 0 .5rem;
     }
-    #achievements p { font-size: 1.1rem; margin-bottom: .8rem; }
+    #achievements p{font-size:1.1rem; margin-bottom:.8rem;}
 
-    footer { height: 6vh; }
+    footer{height:6vh;}
   </style>
 </head>
 <body id="top">
 
   <!-- NAV -->
   <nav>
-    <a href="#" id="homeBtn" class="active">HOME</a>
+    <a href="#" class="active">HOME</a>
     <a href="#achievements">MY ACHIEVEMENTS</a>
   </nav>
 
@@ -168,7 +169,7 @@
     <p>Sparsh Jain from Delhi Public School, Bangalore South secured the Winner position at the prestigious MCA Codenest Hackathon held on 1st February 2025. The event brought together some of the brightest young minds to compete in high-pressure coding and problem-solving challenges. Sparsh’s exceptional skills and innovative approach earned him the Certificate of Achievement, recognizing his outstanding performance in the hackathon.</p>
 
     <h3>Green Pioneers Hackathon – Potentially Most Impactful Project</h3>
-    <p>Sparsh Jain from Delhi Public School, Bangalore South secured the position of Potentially Most Impactful Project at the Green Pioneers Hackathon, organized by YPStem, held on 1st March 2025. His project, <strong>Bhoomi</strong>, focused on promoting sustainable agriculture by using a pH sensor to analyze the nutrient content in manure, providing farmers with real-time, cost-effective insights. Unlike expensive NPK sensors, Bhoomi offers an affordable alternative, leveraging IoT and data analytics to help farmers make better crop and fertilizer decisions. The project was recognized for its strong potential to drive eco-friendly farming practices and create real-world impact. He also won prizes worth over ₹5,000 for his innovative project.</p>
+    <p>Sparsh Jain from Delhi Public School, Bangalore South secured the position of Potentially Most Impactful Project at the Green Pioneers Hackathon, organized by YPStem, held on 1st March 2025. His project, <strong>BHOOMI</strong>, focused on promoting sustainable agriculture by using a pH sensor to analyze the nutrient content in manure, providing farmers with real-time, cost-effective insights. Unlike expensive NPK sensors, Bhoomi offers an affordable alternative, leveraging IoT and data analytics to help farmers make better crop and fertilizer decisions. The project was recognized for its strong potential to drive eco-friendly farming practices and create real-world impact. He also won prizes worth over ₹5,000 for his innovative project.</p>
 
     <h3>Biomimicry Build-a-thon</h3>
     <p>Sparsh Jain from Delhi Public School, Bangalore South received an Honorable Mention at the Biomimicry Build-a-thon, organized by IBYS on 4th February 2025. The competition encouraged participants to create innovative solutions inspired by nature. Sparsh’s project stood out for its creativity and relevance, earning him recognition for his strong application of biomimicry principles in tackling real-world challenges. As part of this achievement, he was also awarded a cash prize of ₹1,000.</p>
@@ -177,15 +178,14 @@
     <p>Sparsh Jain from Delhi Public School, Bangalore South placed among the Top 20 Teams in Student Hacks 2025, organized by Devpost on 17th January 2025. The hackathon brought together students from across the globe to tackle innovative tech challenges. Sparsh’s creative solutions and strong technical skills earned him a Certificate of Recognition, celebrating his place among the top-performing teams in this competitive event.</p>
 
     <h3>Junior Make-a-thon 2025</h3>
-    <p>Sparsh Jain and his team from Delhi Public School, Bangalore South received an Honorable Mention at the Junior Make-a-thon, conducted by Shaastra, IIT Madras, from 4th to 7th January 2025 for their project <em>Predict-A-Quake</em>. Predict-A-Quake’s enhanced AI model integrates seismic wave analysis with satellite imagery and other location-based data to assess soil composition and deliver more accurate earthquake predictions days in advance. Its continuous monitoring framework issues early alerts during emergencies, helping to minimize panic and avoid road congestion. The event encouraged young innovators to design impactful
-
+    <p>Sparsh Jain and his team from Delhi Public School, Bangalore South received an Honorable Mention at the Junior Make-a-thon, conducted by Shaastra, IIT Madras, from 4th to 7th January 2025 for their project <em>Predict-A-Quake</em>. Predict-A-Quake’s enhanced AI model integrates seismic wave analysis with satellite imagery and other location-based data to assess soil composition and deliver more accurate earthquake predictions days in advance. Its continuous monitoring framework issues early alerts during emergencies, helping to minimize panic and avoid road congestion. The event encouraged young innovators to design impactful solutions for a sustainable future. Sparsh and his team's project was recognized for its creativity, feasibility, and potential, earning him a Certificate of Appreciation and trophy from one of India’s most prestigious technical institutions.</p>
   </section>
 
   <footer></footer>
 
   <script>
-    // HOME button -> top
-    document.getElementById('homeBtn').onclick = e => {
+    // HOME button → top
+    document.querySelector('nav a[href="#"]').onclick = e => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -205,7 +205,7 @@
       if (aboutBox.dataset.done) return;
       let l = 0, c = 0;
       (function type(){
-        if (l === lines.length) { aboutBox.dataset.done = 1; return; }
+        if (l === lines.length) { aboutBox.dataset.done=1; return; }
         if (c === 0) aboutBox.innerHTML += `<div id="L${l}"></div>`;
         document.getElementById('L'+l).innerHTML = lines[l].slice(0, ++c);
         if (c === lines[l].length) { l++; c = 0; aboutBox.innerHTML += '<br>'; setTimeout(type, 350); }
@@ -216,20 +216,21 @@
     // Counters (~3s)
     document.querySelectorAll('.stat-number').forEach(el => {
       const target = +el.dataset.target,
-            duration = 3000, frameRate = 30,
-            totalFrames = Math.ceil(duration/frameRate);
+            duration = 3000,
+            frameRate = 30,
+            totalFrames = Math.ceil(duration / frameRate);
       let frame = 0;
       new IntersectionObserver(entries => {
         if (entries[0].isIntersecting) {
-          const timer = setInterval(()=>{
+          const timer = setInterval(() => {
             frame++;
-            const progress = frame/totalFrames,
-                  current = Math.round(target*progress);
+            const progress = frame / totalFrames,
+                  current = Math.round(target * progress);
             el.textContent = current;
             if (frame >= totalFrames) { el.textContent = target; clearInterval(timer); }
           }, frameRate);
         }
-      },{threshold:.6}).observe(el);
+      }, { threshold: .6 }).observe(el);
     });
   </script>
 </body>
