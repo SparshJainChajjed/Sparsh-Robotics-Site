@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="images/avatar.png">
   <style>
-    /* ── COLORS ───────────────────────────────────────── */
     :root {
       --bg: #0d1117;
       --panel: #1e2a3a;
@@ -15,15 +14,13 @@
       --string: #ce9178;
       --comment: #6a9955;
       --key: #9cdcfe;
-      --card-bg: #fff;
-      --card-text: #111;
     }
     * { box-sizing:border-box; margin:0; padding:0 }
     body { background:var(--bg); color:var(--text);
            font-family:Segoe UI,Roboto,Arial,sans-serif; line-height:1.6 }
     a { color:var(--accent); text-decoration:none }
 
-    /* ── NAV ───────────────────────────────────────────── */
+    /* NAV */
     nav {
       position:sticky; top:0; z-index:10;
       display:flex; justify-content:flex-end; gap:1rem;
@@ -39,7 +36,7 @@
       background:var(--accent); color:#fff;
     }
 
-    /* ── HERO ──────────────────────────────────────────── */
+    /* HERO */
     .hero {
       display:flex; flex-wrap:wrap; align-items:center; gap:1rem;
       padding:4rem clamp(1rem,6vw,4rem); min-height:80vh;
@@ -49,7 +46,7 @@
       font-size:clamp(2.5rem,6vw,4.5rem);
       font-weight:800; color:#fff; line-height:1.1;
     }
-    .orange { color:#ffa657; } .purple { color:#c586c0; }
+    .orange { color:#ffa657 } .purple { color:#c586c0 }
     .hero p {
       margin:1.5rem 0 2rem;
       font-size:clamp(1.4rem,3vw,2rem);
@@ -65,48 +62,49 @@
       opacity:.9; transform:translateY(-1px);
     }
 
-    /* ── AVATAR ───────────────────────────────────────── */
+    /* AVATAR */
     .avatar {
-      width:440px; aspect-ratio:1/1;
-      border-radius:50%; overflow:hidden; margin-left:.5rem;
-      flex-shrink:0;
+      width:440px; aspect-ratio:1/1; border-radius:50%;
+      overflow:hidden; margin-left:.5rem; flex-shrink:0;
     }
     .avatar img {
       width:100%; height:100%; object-fit:cover; display:block;
     }
 
-    /* ── ABOUT ─────────────────────────────────────────── */
+    /* ABOUT */
     #about {
       max-width:800px; margin:2rem auto; padding:0 1rem;
       font-size:1.8rem; white-space:pre-wrap;
     }
-    .string  { color:var(--string); }
-    .comment { color:var(--comment); }
-    .key     { color:var(--key); }
+    .string  { color:var(--string) }
+    .comment { color:var(--comment) }
+    .key     { color:var(--key) }
 
-    /* ── SPACER ───────────────────────────────────────── */
-    #spacer { height:100vh; }
+    /* SPACER */
+    #spacer { height:100vh }
 
-    /* ── ACHIEVEMENTS ─────────────────────────────────── */
+    /* ACHIEVEMENTS */
     #achievements {
-      padding:3rem 1rem 5rem; max-width:1000px; margin:0 auto;
+      display:block;
+      padding:3rem 1rem;
+      max-width:1000px;
+      margin:0 auto;
     }
     #achievements h2 {
       font-size:2.5rem; color:var(--accent);
       text-align:center; margin-bottom:2rem;
     }
     .stats {
-      display:flex; flex-wrap:wrap; gap:2rem;
+      display:flex; gap:2rem;
       justify-content:center; margin-bottom:3rem;
     }
     .stat {
-      background:var(--card-bg); color:var(--card-text);
-      padding:1.5rem 2rem; border-radius:8px;
-      min-width:200px; text-align:center;
-      box-shadow:0 4px 10px rgba(0,0,0,.2);
+      background:var(--panel); padding:1.5rem 2rem;
+      border-radius:8px; min-width:200px;
+      text-align:center; box-shadow:0 4px 10px rgba(0,0,0,.4);
     }
-    .stat-label { display:block; font-size:1rem; margin-bottom:.3rem; }
-    .stat-number { font-size:2.4rem; font-weight:700; }
+    .stat-label { font-size:1rem; margin-bottom:.3rem; display:block; }
+    .stat-number { font-size:2.4rem; font-weight:700; color:#fff; }
 
     #achievements h3 {
       font-size:1.6rem; color:var(--accent);
@@ -117,7 +115,7 @@
       max-width:900px;
     }
 
-    footer { height:6vh; }
+    footer { height:6vh }
   </style>
 </head>
 <body id="top">
@@ -162,35 +160,34 @@
       </div>
     </div>
 
-    <!-- FULL TEXT ENTRIES -->
-    <h3>National Automation Robotics Challenge 2024</h3>
+    <!-- FULL LIST -->
+    <h3>National Automation Robotics Challenge 2024</h3>
     <p>
-      Sparsh Jain of class 8 from Delhi Public School, Bangalore South participated in the National Automation Robotics Challenge 2024, a 6-hour hackathon held at SRM Institute of Technology on 20th September 2024. Competing in the Automation category, Sparsh, along with his teammate, developed a system that automates irrigation for farmers by measuring soil moisture, using a weather API and an AI model to predict how long crops need to be watered. Unlike basic systems that water based only on dryness, their innovation used advanced data analytics to deliver precise predictions with 95 % accuracy. They secured first place, winning a cash prize worth ₹ 7 500.
+      Sparsh Jain of class 8 from Delhi Public School, Bangalore South participated in the National Automation Robotics Challenge 2024, a 6‑hour hackathon held at SRM Institute of Technology on 20th September 2024. Competing in the Automation category, Sparsh, along with his teammate, developed a system that automates irrigation for farmers by measuring soil moisture, using a weather API and an AI model to predict how long crops need to be watered. Unlike basic systems that water based only on dryness, their innovation used advanced data analytics to deliver precise predictions with 95 % accuracy. They secured first place, winning a cash prize worth ₹ 7 500.
     </p>
 
-    <h3>IEEE REPower Competition</h3>
+    <h3>IEEE REPower Competition</h3>
     <p>
-      Sparsh Jain, of Delhi Public School, Bangalore South, secured 3rd position in the prestigious REPower: Revolutionize Sustainable Energy Future Competition for his innovative idea <strong>BHOOMI</strong>. This idea-pitching competition was organized by IEEE PES R10 during the IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2024 summit held in Bangalore on 10th November 2024.
+      Sparsh Jain, of Delhi Public School, Bangalore South, secured 3rd position in the prestigious REPower: Revolutionize Sustainable Energy Future Competition for his innovative idea <strong>BHOOMI</strong>. This idea-pitching competition was organized by IEEE PES R10 during the IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2024 summit held in Bangalore on 10th November 2024.
     </p>
 
-    <h3>Innovate H₂O Ideathon 2024</h3>
+    <h3>Innovate H₂O Ideathon 2024</h3>
     <p>
-      The Innovate H₂O Ideathon in February 2024, organized by Vishnu Foundation TBI and IFIA Bharat, brought together 88 teams to tackle water-management challenges. Among them, Team Aqua Boat, consisting of class 8-grader Sparsh Jain and team, presented an AI-powered irrigation system that optimizes water usage for crops using a neural network on a Raspberry Pi. His team's innovative solution earned the winning award for its potential to transform sustainable farming by enhancing crop health and increasing yields. They also received ₹ 10 000 funding from the Vishnu Foundation and IFIA Bharat.
+      The Innovate H₂O Ideathon in February 2024, organized by Vishnu Foundation TBI and IFIA Bharat, brought together 88 teams to tackle water-management challenges. Among them, Team Aqua Boat, consisting of class 8‑grader Sparsh Jain and team, presented an AI-powered irrigation system that optimizes water usage for crops using a neural network on a Raspberry Pi. His team's innovative solution earned the winning award for its potential to transform sustainable farming by enhancing crop health and increasing yields. They also received ₹ 10 000 funding from the Vishnu Foundation and IFIA Bharat.
     </p>
 
-    <h3>Atal Marathon 2024</h3>
+    <h3>Atal Marathon 2024</h3>
     <p>
-      Sparsh Jain from Delhi Public School, Bangalore South was awarded a Certificate of Achievement for the project <strong>Soil Smart</strong>. His team ranked among the top 500 teams in the prestigious ATL Marathon 2023–24, organized by the Atal Innovation Mission, NITI Aayog. This recognition brings government funding and mentorship from SIP Jyoti to further develop the project. Soil Smart is an IoT-driven soil-health analyzer that combines pH, moisture and temperature sensors with a Raspberry Pi Zero and a custom AI model to predict optimal fertilizer and calcium dosages. It delivers real-time recommendations via a web dashboard, helping farmers tailor soil amendments and crop choices for maximum yield.
+      Sparsh Jain from Delhi Public School, Bangalore South was awarded a Certificate of Achievement for the project <strong>Soil Smart</strong>. His team ranked among the top 500 teams in the prestigious ATL Marathon 2023–24, organized by the Atal Innovation Mission, NITI Aayog. This recognition brings government funding and mentorship from SIP Jyoti to further develop the project. Soil Smart is an IoT-driven soil-health analyzer that combines pH, moisture and temperature sensors with a Raspberry Pi Zero and a custom AI model to predict optimal fertilizer and calcium dosages. It delivers real-time recommendations via a web dashboard, helping farmers tailor soil amendments and crop choices for maximum yield.
     </p>
 
-    <!-- ...and so on for every event exactly as above... -->
-
+    <!-- Continue copying each remaining competition block here exactly -->
   </section>
 
   <footer></footer>
 
   <script>
-    // HOME link scroll top
+    // HOME → top
     document.getElementById('homeLink').onclick = e => {
       e.preventDefault();
       window.scrollTo({ top:0, behavior:'smooth' });
@@ -204,24 +201,23 @@
             '<span class="comment">This website is dedicated to documenting my projects, achievements and experiences.</span>',
             '<span class="key">Feel free to explore the site.</span>'
           ];
-
     aboutBtn.onclick = () => {
       const navH = document.querySelector('nav').offsetHeight,
             y    = aboutSec.getBoundingClientRect().top + window.scrollY - navH;
       window.scrollTo({ top:y, behavior:'smooth' });
       if (aboutSec.dataset.done) return;
-      let l=0,c=0;
+      let l=0, c=0;
       (function type(){
         if (l===lines.length){ aboutSec.dataset.done=1; return; }
         if (c===0) aboutSec.innerHTML += `<div id="L${l}"></div>`;
-        document.getElementById('L'+l).innerHTML = lines[l].slice(0,++c);
+        document.getElementById('L'+l).innerHTML = lines[l].slice(0, ++c);
         if (c===lines[l].length){
           l++; c=0; aboutSec.innerHTML += '<br>'; setTimeout(type,350);
         } else setTimeout(type,35);
       })();
     };
 
-    // Achievements click: scroll + counters
+    // Animate counters on Achievements click
     document.getElementById('achLink').onclick = e => {
       e.preventDefault();
       const ach = document.getElementById('achievements'),
@@ -229,18 +225,17 @@
             y    = ach.getBoundingClientRect().top + window.scrollY - navH;
       window.scrollTo({ top:y, behavior:'smooth' });
 
-      // animate counters once
       if (!ach.dataset.counted) {
         ach.dataset.counted = '1';
         document.querySelectorAll('.stat-number').forEach(el=>{
-          const target   = +el.dataset-target,
-                duration = 3000,
+          const target   = +el.dataset.target,
+                duration = 2000,
                 frames   = Math.ceil(duration/30);
-          let frame=0;
-          (function tick(){
-            frame++;
-            el.textContent = Math.round(target*(frame/frames));
-            if(frame<frames) requestAnimationFrame(tick);
+          let f=0;
+          (function step(){
+            f++;
+            el.textContent = Math.round(target*(f/frames));
+            if (f<frames) requestAnimationFrame(step);
             else el.textContent = target;
           })();
         });
