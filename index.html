@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="images/avatar.png">
   <style>
-    /* VS Code dark palette */
+    /* VS Code dark-blue palette */
     :root {
       --bg: #0d1117;
       --panel: #1e2a3a;
@@ -16,94 +16,96 @@
       --comment: #6a9955;
       --key: #9cdcfe;
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
+    /* RESET */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: var(--text); font-family:Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; }
     a { color: var(--accent); text-decoration: none; }
 
     /* NAV */
     nav {
-      position: sticky; top:0; z-index:10;
-      display: flex; gap:1rem; justify-content:flex-end;
-      background: var(--panel); padding:1rem 1.5rem;
+      position: sticky; top: 0; z-index: 10;
+      display: flex; gap: 1rem; justify-content: flex-end;
+      background: var(--panel); padding: 1rem 1.5rem;
       box-shadow: 0 3px 6px rgba(0,0,0,.5);
     }
     nav a {
-      padding:.6rem 1.2rem;
-      border:2px solid var(--accent); border-radius:6px;
-      font-weight:600; font-size:1.1rem; transition:.2s;
+      padding: .6rem 1.2rem; border: 2px solid var(--accent);
+      border-radius: 6px; font-weight: 600; font-size: 1.1rem;
+      transition: .2s;
     }
-    nav a:hover, nav a.active { background: var(--accent); color:#fff; }
+    nav a:hover, nav a.active { background: var(--accent); color: #fff; }
 
     /* HERO */
     .hero {
-      display:flex; flex-wrap:wrap; align-items:center; gap:2rem;
-      padding:4rem clamp(1rem,6vw,4rem); min-height:70vh;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 3rem;
+      padding: 4rem clamp(1rem,6vw,4rem); min-height: 80vh;
     }
     .hero__text {
-      flex:1 1 300px;
+      flex: 1 1 280px;
     }
     .hero h1 {
-      font-size:clamp(3rem,8vw,6rem); font-weight:800; line-height:1.1; color:#fff;
+      font-size: clamp(2.5rem,6vw,5rem); font-weight: 800; line-height: 1.1; color: #fff;
     }
-    .orange { color:#ffa657; } .purple { color:#c586c0; }
+    .hero span.orange { color: #ffa657; }
+    .hero span.purple { color: #c586c0; }
     .hero p {
-      margin:2rem 0 3rem; font-size:clamp(1.6rem,3vw,2.3rem); color:#ddd;
+      margin: 2rem 0 3rem; font-size: clamp(1.6rem,3vw,2.1rem); color: #ddd;
     }
     .btn {
-      display:inline-flex; align-items:center; gap:.6rem;
-      background:var(--accent); color:#fff; border:none; border-radius:50px;
-      padding:1.2rem 2.5rem; font-size:1.3rem; font-weight:600;
-      cursor:pointer; transition:.2s;
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: var(--accent); color: #fff; border: none; border-radius: 50px;
+      padding: 1.2rem 2.5rem; font-size: 1.3rem; font-weight: 600;
+      cursor: pointer; transition: .2s;
     }
-    .btn:hover { opacity:.9; transform:translateY(-1px); }
+    .btn:hover { opacity: .9; transform: translateY(-1px); }
 
-    /* AVATAR – smaller */
+    /* AVATAR – larger */
     .avatar {
-      width:220px; /* smaller fixed width */
-      aspect-ratio:1/1; overflow:hidden;
-      clip-path:circle(50% at 50% 50%);
-      box-shadow:0 6px 15px rgba(0,0,0,.65);
+      width: 300px;      /* increased size */
+      aspect-ratio: 1/1; overflow: hidden;
+      clip-path: circle(50% at 50% 50%);
+      box-shadow: 0 6px 15px rgba(0,0,0,.65);
     }
-    .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ABOUT */
     #about {
-      max-width:900px; margin:2rem auto 4rem; padding:0 1rem;
-      font-size:1.8rem; white-space: pre-wrap;
+      max-width: 900px; margin: 2rem auto 4rem; padding: 0 1rem;
+      font-size: 1.8rem; white-space: pre-wrap;
     }
-    .string { color:var(--string); }
-    .comment { color:var(--comment); }
-    .key { color:var(--key); }
+    .string { color: var(--string); }
+    .comment { color: var(--comment); }
+    .key     { color: var(--key); }
 
     /* SPACER */
-    #spacer { height:100vh; }
+    #spacer { height: 100vh; }
 
     /* ACHIEVEMENTS */
     #achievements {
-      padding:3rem 1rem 5rem; max-width:900px; margin:0 auto;
+      padding: 3rem 1rem 5rem; max-width: 900px; margin: 0 auto;
     }
     #achievements h2 {
-      font-size:2.6rem; color:var(--accent);
-      text-align:center; margin-bottom:2rem;
+      font-size: 2.6rem; color: var(--accent);
+      text-align: center; margin-bottom: 2rem;
     }
     .stats {
-      display:flex; flex-wrap:wrap; gap:2rem;
-      justify-content:center; margin-bottom:3rem;
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      justify-content: center; margin-bottom: 3rem;
     }
     .stat {
-      background:var(--panel); padding:1.5rem 2rem;
-      border-radius:8px; min-width:200px; text-align:center;
-      box-shadow:0 4px 10px rgba(0,0,0,.4);
+      background: var(--panel); padding: 1.5rem 2rem;
+      border-radius: 8px; min-width: 200px; text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,.4);
     }
-    .stat-label { display:block; font-size:1.1rem; margin-bottom:.4rem; }
-    .stat-number { font-size:2.8rem; font-weight:700; color:#fff; }
+    .stat-label { display: block; font-size: 1.1rem; margin-bottom: .4rem; }
+    .stat-number { font-size: 2.8rem; font-weight: 700; color: #fff; }
     #achievements h3 {
-      font-size:1.8rem; color:var(--accent);
-      margin:1.5rem 0 .5rem;
+      font-size: 1.8rem; color: var(--accent);
+      margin: 1.5rem 0 .5rem;
     }
-    #achievements p { font-size:1.2rem; margin-bottom:1rem; }
+    #achievements p { font-size: 1.2rem; margin-bottom: 1rem; }
 
-    footer { height:6vh; }
+    footer { height: 6vh; }
   </style>
 </head>
 <body id="top">
@@ -126,7 +128,7 @@
     </div>
   </section>
 
-  <!-- ABOUT ME -->
+  <!-- ABOUT -->
   <section id="about"></section>
 
   <!-- SPACER -->
@@ -146,15 +148,59 @@
       </div>
     </div>
 
-    <!-- ... your full achievements text here ... -->
-    <!-- (same as before, class 8, no 'Picture') -->
+    <h3>National Automation Robotics Challenge 2024</h3>
+    <p>Sparsh Jain of class 8 from Delhi Public School, Bangalore South participated in the National Automation Robotics Challenge 2024, a 6-hour hackathon held at SRM Institute of Technology on 20th September 2024. Competing in the Automation category, Sparsh, along with his teammate, developed a system that automates irrigation for farmers by measuring soil moisture, using a weather API and an AI model to predict how long crops need to be watered. Unlike basic systems that water based only on dryness, their innovation used advanced data analytics to deliver precise predictions with 95% accuracy. They secured first place, winning a cash prize worth ₹7,500.</p>
 
+    <h3>IEEE REPower Competition</h3>
+    <p>Sparsh Jain, of Delhi Public School, Bangalore South, secured 3rd position in the prestigious REPower: Revolutionize Sustainable Energy Future Competition for his innovative idea <strong>BHOOMI</strong>. This idea-pitching competition was organized by the Institute of Electrical and Electronics Engineers (IEEE) PES R10 during the IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2024 summit held in Bangalore on 10th November 2024.</p>
+
+    <h3>Innovate H₂O Ideathon 2024</h3>
+    <p>The Innovate H₂O Ideathon in February 2024, organized by Vishnu Foundation TBI and IFIA Bharat, brought together 88 teams to tackle water management challenges. Among them, Team Aqua Boat, consisting of class 8-grader Sparsh Jain and team, presented an AI-powered irrigation system that optimizes water usage for crops using a neural network on a Raspberry Pi. His team's innovative solution earned the winning award for its potential to transform sustainable farming by enhancing crop health and increasing yields. He and his team also received ₹10,000 funding from the Vishnu Foundation and IFIA Bharat.</p>
+
+    <h3>Atal Marathon 2024</h3>
+    <p>Sparsh Jain from Delhi Public School, Bangalore South was awarded a Certificate of Achievement for the project <strong>Soil Smart</strong>. His team ranked among the top 500 teams in the prestigious ATL Marathon 2023–24, organized by the Atal Innovation Mission, NITI Aayog. As a result of this recognition, his team will receive government funding and mentorship to further develop their innovative project. Soil Smart is an IoT-driven soil health analyzer that combines pH, moisture and temperature sensors with a Raspberry Pi Zero and a custom AI model to predict optimal fertilizer and calcium dosages. It then delivers real-time, easy-to-interpret recommendations via a web dashboard, helping farmers tailor soil amendments and crop choices for maximum yield.</p>
+
+    <h3>Elixir 8.0</h3>
+    <p>Sparsh Jain participated in the University Level Open Day: Elixir 2024, held on 19th August 2024 at St Joseph's University, Bengaluru. His team contributed to their school winning the overall contribution trophy.</p>
+
+    <h3>World Robotics Olympiad (WRO)</h3>
+    <p>Sparsh Jain secured 2nd place in the RoboMission Category at the WRO Championship, organized by the India STEM Foundation. His performance highlighted technical skill, creativity, and excellence in autonomous robotics challenges.</p>
+
+    <h3>MCA Codenest Hackathon 2025 – Winner</h3>
+    <p>Sparsh Jain secured the Winner position at the MCA Codenest Hackathon on 1st February 2025, earning a Certificate of Achievement for outstanding coding and problem-solving.</p>
+
+    <h3>Green Pioneers Hackathon – Potentially Most Impactful Project</h3>
+    <p>Sparsh Jain secured the Potentially Most Impactful Project award at YPStem’s Green Pioneers Hackathon on 1st March 2025 for his project <strong>BHOOMI</strong>, leveraging pH sensors and IoT to provide real-time nutrient insights. He won prizes worth over ₹5,000.</p>
+
+    <h3>Biomimicry Build-a-thon</h3>
+    <p>Sparsh Jain received an Honorable Mention and ₹1,000 at the IBYS Biomimicry Build-a-thon on 4th February 2025 for a nature-inspired design.</p>
+
+    <h3>Student Hacks 2025</h3>
+    <p>Sparsh Jain placed among the Top 20 Teams globally at Student Hacks 2025 (Devpost, 17th January 2025) for his innovative tech solutions.</p>
+
+    <h3>Junior Make-a-thon 2025</h3>
+    <p>At IIT Madras Shaastra Junior Make-a-thon (4–7th January 2025), Sparsh Jain’s team earned an Honorable Mention for <em>Predict-A-Quake</em>, an AI model for early earthquake alerts.</p>
+
+    <h3>Hack 4 Humanity 2024</h3>
+    <p>Sparsh Jain received an Honorable Mention at Hack 4 Humanity (judged 3–6th December 2024) for innovation and practical impact.</p>
+
+    <h3>Fabguard Innovation Challenge</h3>
+    <p>Sparsh Jain won ₹5,000 for his project <strong>Bhoomi</strong> in the Fabguard Innovation Challenge, showcasing sustainable-agriculture innovation.</p>
+
+    <h3>Intel AI Fest</h3>
+    <p>Sparsh Jain completed Intel & Atal Innovation Mission’s AI for Entrepreneurship micro‑learning module on 10th March 2025.</p>
+
+    <h3>Raman Young Science Innovator Award 2024</h3>
+    <p>Sparsh Jain was a National Qualifier for the Raman Young Science Innovator Award 2024 with his <em>Neuroshield</em> smart‑helmet system.</p>
+
+    <h3>MEGA Hackathon 2025</h3>
+    <p>Sparsh Jain of class 8 won the Sustainability Award (prizes worth over $100) at MEGA Hackathon 2025 for his IoT‑based soil‑analysis solution <strong>Bhoomi</strong>.</p>
   </section>
 
   <footer></footer>
 
   <script>
-    // About Me typing + precise scroll
+    // ABOUT ME typing & precise scroll
     const aboutBtn = document.getElementById('aboutBtn'),
           aboutBox = document.getElementById('about'),
           lines = [
@@ -163,39 +209,37 @@
             '<span class="key">Feel free to explore the site.</span>'
           ];
     aboutBtn.onclick = () => {
-      // scroll so the first line is visible just below the nav
-      const navHeight = document.querySelector('nav').offsetHeight;
-      const y = aboutBox.getBoundingClientRect().top + window.scrollY - navHeight;
+      const navH = document.querySelector('nav').offsetHeight;
+      const y = aboutBox.getBoundingClientRect().top + window.scrollY - navH;
       window.scrollTo({ top: y, behavior: 'smooth' });
-      // typing animation
       if (aboutBox.dataset.done) return;
       let l=0, c=0;
       (function type(){
-        if (l === lines.length) { aboutBox.dataset.done = 1; return; }
-        if (c === 0) aboutBox.innerHTML += `<div id="L${l}"></div>`;
+        if (l === lines.length) { aboutBox.dataset.done=1; return; }
+        if (c===0) aboutBox.innerHTML += `<div id="L${l}"></div>`;
         document.getElementById('L'+l).innerHTML = lines[l].slice(0, ++c);
-        if (c === lines[l].length) { l++; c=0; aboutBox.innerHTML += '<br>'; setTimeout(type, 350); }
-        else setTimeout(type, 35);
+        if (c === lines[l].length) { l++; c=0; aboutBox.innerHTML += '<br>'; setTimeout(type,350); }
+        else setTimeout(type,35);
       })();
     };
 
-    // Counters (~3s)
+    // COUNTERS (~3s)
     document.querySelectorAll('.stat-number').forEach(el => {
       const target = +el.dataset.target,
             duration = 3000, frameRate = 30,
-            totalFrames = Math.ceil(duration / frameRate);
+            totalFrames = Math.ceil(duration/frameRate);
       let frame = 0;
       new IntersectionObserver(entries => {
         if (entries[0].isIntersecting) {
-          const timer = setInterval(() => {
+          const timer = setInterval(()=>{
             frame++;
-            const progress = frame / totalFrames,
-                  current = Math.round(target * progress);
+            const progress = frame/totalFrames,
+                  current = Math.round(target*progress);
             el.textContent = current;
             if (frame >= totalFrames) { el.textContent = target; clearInterval(timer); }
           }, frameRate);
         }
-      },{threshold: .6}).observe(el);
+      },{threshold:.6}).observe(el);
     });
   </script>
 </body>
