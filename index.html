@@ -14,7 +14,7 @@
       --bg:#0d1117; --panel:#1e2a3a; --accent:#388bfd;
       --text:#d4d4d4; --string:#ce9178; --comment:#6a9955; --key:#9cdcfe;
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
+    * { box-sizing:border-box; margin:0; padding:0; }
     body { background:var(--bg); color:var(--text); font-family:Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; }
     a { color:var(--accent); text-decoration:none; }
 
@@ -34,10 +34,17 @@
 
     /* HERO */
     .hero {
-      display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; /* tighter */
-      padding:4rem clamp(1rem,6vw,4rem); min-height:80vh;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:4rem clamp(1rem,6vw,4rem);
+      min-height:80vh;
     }
-    .hero__text { flex:1; }
+    /* push text to left */
+    .hero__text {
+      flex:1;
+      max-width:50%;
+    }
     .hero h1 {
       font-size:clamp(2.5rem,6vw,4.5rem);
       font-weight:800; color:#fff; line-height:1.1;
@@ -54,11 +61,11 @@
     }
     .btn:hover { opacity:.9; transform:translateY(-1px); }
 
-    /* AVATAR – 25% larger & now flush to text */
+    /* AVATAR – 25% larger & flush against text */
     .avatar {
-      width:550px; /* was 440px */
+      width:550px; /* 25% up from 440px */
       aspect-ratio:1/1; border-radius:50%; overflow:hidden;
-      margin-left:0; /* removed gap */
+      margin-left:1rem; /* small gap */
       flex-shrink:0;
     }
     .avatar img { width:100%; height:100%; object-fit:cover; }
@@ -73,7 +80,7 @@
     /* SPACER */
     #spacer{height:100vh}
 
-    /* ACHIEVEMENTS (hidden by default) */
+    /* ACHIEVEMENTS */
     #achievements {
       display:none;
       max-width:800px; margin:0 auto; padding:3rem 1rem 5rem;
@@ -100,13 +107,11 @@
 </head>
 <body id="top">
 
-  <!-- NAV -->
   <nav>
     <a href="#" id="homeLink" class="active">HOME</a>
     <a href="#achievements" id="achLink">MY ACHIEVEMENTS</a>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero__text">
       <h1>Hi There,<br>I'm <span class="orange">Sparsh Jain</span></h1>
@@ -118,13 +123,9 @@
     </div>
   </section>
 
-  <!-- ABOUT (typing) -->
   <section id="about"></section>
-
-  <!-- SPACER -->
   <div id="spacer"></div>
 
-  <!-- ACHIEVEMENTS -->
   <section id="achievements">
     <h2>My Achievements</h2>
     <div class="stats">
@@ -137,19 +138,18 @@
         <span class="stat-number" data-target="24">0</span>
       </div>
     </div>
-    <!-- all competition entries here... -->
+    <!-- ...all your competition entries here... -->
   </section>
 
   <footer></footer>
 
   <script>
-    // HOME scroll
     document.getElementById('homeLink').onclick = e => {
       e.preventDefault();
-      window.scrollTo({ top:0, behavior:'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // ABOUT typing + scroll
+    // About Me typing
     (function(){
       const btn = document.getElementById('aboutBtn'),
             sec = document.getElementById('about'),
@@ -163,11 +163,11 @@
               y    = sec.getBoundingClientRect().top + window.scrollY - navH;
         window.scrollTo({ top:y, behavior:'smooth' });
         if (sec.dataset.done) return;
-        let l=0, c=0;
+        let l=0,c=0;
         (function type(){
           if (l===lines.length){ sec.dataset.done=1; return; }
-          if (c===0) sec.innerHTML += `<div id="L${l}"></div>`;
-          document.getElementById(`L${l}`).innerHTML = lines[l].slice(0, ++c);
+          if (!c) sec.innerHTML += `<div id="L${l}"></div>`;
+          document.getElementById(`L${l}`).innerHTML = lines[l].slice(0,++c);
           if (c===lines[l].length){
             sec.innerHTML += '<br>'; l++; c=0;
             setTimeout(type,350);
@@ -176,7 +176,7 @@
       };
     })();
 
-    // ACHIEVEMENTS reveal + counters
+    // Achievements reveal & counters
     (function(){
       const link = document.getElementById('achLink'),
             ach  = document.getElementById('achievements');
@@ -198,10 +198,7 @@
             const timer = setInterval(()=>{
               frame++;
               el.textContent = Math.round(target * (frame/total));
-              if (frame>=total) {
-                clearInterval(timer);
-                el.textContent = target;
-              }
+              if (frame>=total){ clearInterval(timer); el.textContent=target; }
             }, frameRate);
           });
         }
