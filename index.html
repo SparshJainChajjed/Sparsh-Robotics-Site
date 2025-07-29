@@ -7,100 +7,93 @@
   <link rel="icon" href="images/avatar.png">
   <style>
     /* bump text +8% */
-    html { font-size: 108%; }
+    html { font-size:108%; }
     :root {
-      --bg: #0d1117; --panel: #1e2a3a; --accent: #388bfd;
-      --text: #d4d4d4; --string: #ce9178; --comment: #6a9955; --key: #9cdcfe;
+      --bg:#0d1117; --panel:#1e2a3a; --accent:#388bfd;
+      --text:#d4d4d4; --string:#ce9178; --comment:#6a9955; --key:#9cdcfe;
     }
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body { background: var(--bg); color: var(--text); font-family:Segoe UI,Roboto,Arial,sans-serif; line-height:1.6; }
-    a { color: var(--accent); text-decoration: none; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
 
     /* NAV */
     nav {
-      position: sticky; top:0; z-index:10;
-      display: flex; justify-content: flex-end; gap:1rem;
-      background: var(--panel); padding:1rem 1.5rem;
+      position:sticky;top:0;z-index:10;
+      display:flex;justify-content:flex-end;gap:1rem;
+      background:var(--panel);padding:1rem 1.5rem;
       box-shadow:0 3px 6px rgba(0,0,0,.5);
     }
     nav a {
-      padding:.6rem 1.2rem; border:2px solid var(--accent);
-      border-radius:6px; font-weight:600; font-size:1.1rem;
-      transition: .2s;
+      padding:.6rem 1.2rem;border:2px solid var(--accent);
+      border-radius:6px;font-weight:600;font-size:1.1rem;
+      transition:.2s;
     }
-    nav a:hover, nav a.active { background: var(--accent); color:#fff; }
+    nav a:hover,nav a.active{background:var(--accent);color:#fff}
 
     /* HERO */
     .hero {
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex;align-items:center;justify-content:space-between;
       gap:0; /* flush */
-      padding:4rem clamp(1rem,6vw,4rem); min-height:80vh;
+      padding:4rem clamp(1rem,6vw,4rem);min-height:80vh;
     }
-    .hero__text {
-      flex:1; max-width:50%;
-    }
+    .hero__text{flex:1;max-width:50%}
     .hero h1 {
-      font-size: clamp(2.5rem,6vw,4.5rem);
-      font-weight:800; color:#fff; line-height:1.1;
+      font-size:clamp(2.5rem,6vw,4.5rem);
+      font-weight:800;color:#fff;line-height:1.1;
     }
-    .orange { color:#ffa657 } .purple { color:#c586c0 }
+    .orange{color:#ffa657} .purple{color:#c586c0}
     .hero p {
-      margin:1.5rem 0 2rem; font-size: clamp(1.4rem,3vw,2rem); color:#ddd;
+      margin:1.5rem 0 2rem;font-size:clamp(1.4rem,3vw,2rem);color:#ddd;
     }
     .btn {
-      display:inline-flex; align-items:center; gap:.6rem;
-      background: var(--accent); color:#fff; border:none; border-radius:50px;
-      padding:1rem 2rem; font-size:1.2rem; font-weight:600;
-      cursor:pointer; transition:.2s;
+      display:inline-flex;align-items:center;gap:.6rem;
+      background:var(--accent);color:#fff;border:none;border-radius:50px;
+      padding:1rem 2rem;font-size:1.2rem;font-weight:600;
+      cursor:pointer;transition:.2s;
     }
-    .btn:hover { opacity:.9; transform:translateY(-1px); }
+    .btn:hover{opacity:.9;transform:translateY(-1px)}
 
-    /* AVATAR */
+    /* AVATAR – 25% larger & pulled closer by -2rem */
     .avatar {
-      width:550px; /* 440×1.25 */
-      aspect-ratio:1/1; border-radius:50%; overflow:hidden;
-      margin-left:-1rem; /* overlap to pull tighter */
+      width:550px;aspect-ratio:1/1;border-radius:50%;overflow:hidden;
+      margin-left:-2rem; /* pulled in even tighter */
       flex-shrink:0;
     }
-    .avatar img { width:100%; height:100%; object-fit:cover; }
+    .avatar img{width:100%;height:100%;object-fit:cover}
 
     /* ABOUT */
     #about {
-      max-width:800px; margin:2rem auto; padding:0 1rem;
-      font-size:1.8rem; white-space:pre-wrap;
+      max-width:800px;margin:2rem auto;padding:0 1rem;
+      font-size:1.8rem;white-space:pre-wrap;
     }
-    .string { color:var(--string) }
-    .comment { color:var(--comment) }
-    .key     { color:var(--key) }
+    .string{color:var(--string)} .comment{color:var(--comment)} .key{color:var(--key)}
 
     /* SPACER */
-    #spacer { height:100vh }
+    #spacer{height:100vh}
 
     /* ACHIEVEMENTS */
     #achievements {
       display:none;
-      max-width:800px; margin:0 auto; padding:3rem 1rem 5rem;
+      max-width:800px;margin:0 auto;padding:3rem 1rem 5rem;
     }
     #achievements h2 {
-      text-align:center; color:var(--accent); font-size:2.5rem; margin-bottom:2rem;
+      text-align:center;color:var(--accent);font-size:2.5rem;margin-bottom:2rem;
     }
     .stats {
-      display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-bottom:3rem;
+      display:flex;flex-wrap:wrap;gap:2rem;
+      justify-content:center;margin-bottom:3rem;
     }
     .stat {
-      background:var(--panel); padding:1.5rem 2rem; border-radius:8px;
-      min-width:180px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,.4);
+      background:var(--panel);padding:1.5rem 2rem;
+      border-radius:8px;min-width:180px;text-align:center;
+      box-shadow:0 4px 10px rgba(0,0,0,.4);
     }
-    .stat-label { display:block; font-size:1rem; margin-bottom:.3rem; }
-    .stat-number { font-size:2.4rem; font-weight:700; color:#fff; }
-    #achievements h3 {
-      color:var(--accent); font-size:1.6rem; margin:1.2rem 0 .5rem;
-    }
-    #achievements p {
-      font-size:1.1rem; margin-bottom:.8rem;
-    }
+    .stat-label{display:block;font-size:1rem;margin-bottom:.3rem}
+    .stat-number{font-size:2.4rem;font-weight:700;color:#fff}
+    #achievements h3{color:var(--accent);font-size:1.6rem;margin:1.2rem 0 .5rem}
+    #achievements p{font-size:1.1rem;margin-bottom:.8rem}
 
-    footer { height:6vh }
+    footer{height:6vh}
   </style>
 </head>
 <body id="top">
@@ -112,9 +105,9 @@
 
   <section class="hero">
     <div class="hero__text">
-      <h1>Hi There,<br>I'm <span class="orange">Sparsh Jain</span></h1>
+      <h1>Hi There,<br>I'm <span class="orange">Sparsh Jain</span></h1>
       <p>I am into <span class="purple">embedded engineering</span></p>
-      <button class="btn" id="aboutBtn">About Me ↓</button>
+      <button class="btn" id="aboutBtn">About Me ↓</button>
     </div>
     <div class="avatar">
       <img src="images/avatar.png" alt="Cartoon Sparsh waving">
@@ -125,7 +118,7 @@
   <div id="spacer"></div>
 
   <section id="achievements">
-    <h2>My Achievements</h2>
+    <h2>My Achievements</h2>
     <div class="stats">
       <div class="stat">
         <span class="stat-label">Competitions Participated</span>
@@ -137,40 +130,50 @@
       </div>
     </div>
 
-    <!-- all your entries below, verbatim -->
-    <h3>National Automation Robotics Challenge 2024</h3>
-    <p>Sparsh Jain of class 8 from Delhi Public School, Bangalore South participated in the National Automation Robotics Challenge 2024, a 6‑hour hackathon held at SRM Institute of Technology on 20th September 2024. Competing in the Automation category, Sparsh, along with his teammate, developed a system that automates irrigation for farmers by measuring soil moisture, using a weather API and an AI model to predict how long crops need to be watered. Unlike basic systems that water based only on dryness, their innovation used advanced data analytics to deliver precise predictions with 95% accuracy. They secured first place, winning a cash prize worth ₹7,500.</p>
+    <h3>National Automation Robotics Challenge 2024</h3>
+    <p>
+      Sparsh Jain of class 8 from Delhi Public School, Bangalore South participated in the National Automation Robotics Challenge 2024, a 6‑hour hackathon held at SRM Institute of Technology on 20th September 2024. Competing in the Automation category, Sparsh, along with his teammate, developed a system that automates irrigation for farmers by measuring soil moisture, using a weather API and an AI model to predict how long crops need to be watered. Unlike basic systems that water based only on dryness, their innovation used advanced data analytics to deliver precise predictions with 95% accuracy. They secured first place, winning a cash prize worth ₹7,500.
+    </p>
 
-    <!-- (repeat each <h3> + <p> exactly ...) -->
+    <h3>IEEE REPower Competition</h3>
+    <p>
+      Sparsh Jain, of Delhi Public School, Bangalore South, secured 3rd position in the prestigious REPower: Revolutionize Sustainable Energy Future Competition for his innovative idea <strong>BHOOMI</strong>. This idea-pitching competition was organized by the Institute of Electrical and Electronics Engineers (IEEE) PES R10 during the IEEE PES Innovative Smart Grid Technologies (ISGT) Asia 2024 summit held in Bangalore on 10th November 2024.
+    </p>
+
+    <h3>Innovate H₂O Ideathon 2024</h3>
+    <p>
+      The Innovate H₂O Ideathon in February 2024, organized by Vishnu Foundation TBI and IFIA Bharat, brought together 88 teams to tackle water management challenges. Among them, Team Aqua Boat, consisting of class 8‑grader Sparsh Jain and team, presented an AI-powered irrigation system that optimizes water usage for crops using a neural network on a Raspberry Pi. His team's innovative solution earned the winning award for its potential to transform sustainable farming by enhancing crop health and increasing yields. He and his team also received ₹10,000 funding from the Vishnu Foundation and IFIA Bharat.
+    </p>
+
+    <!-- Continue verbatim for every competition entry ... -->
 
   </section>
 
-  <footer></footer>
-
   <script>
-    document.querySelector('#homeLink').addEventListener('click', e => {
+    // HOME scroll
+    document.getElementById('homeLink').addEventListener('click', e => {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top:0, behavior:'smooth' });
     });
 
-    // About Me
-    document.querySelector('#aboutBtn').addEventListener('click', () => {
-      const sec = document.querySelector('#about'),
+    // ABOUT typing + scroll
+    document.getElementById('aboutBtn').addEventListener('click', () => {
+      const sec = document.getElementById('about'),
             navH = document.querySelector('nav').offsetHeight,
             y    = sec.getBoundingClientRect().top + window.scrollY - navH;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ top:y, behavior:'smooth' });
       if (sec.dataset.done) return;
       const lines = [
         '<span class="string">Hi, I\'m Sparsh, a 14‑year‑old enthusiast with a deep passion for robotics, AI, machine learning (ML), 3‑D modelling and technology.</span>',
         '<span class="comment">This website is dedicated to documenting my projects, achievements and experiences.</span>',
-        '<span class="key">Feel free to explore the site.</span>',
+        '<span class="key">Feel free to explore the site.</span>'
       ];
       let l=0, c=0;
       (function type(){
         if (l===lines.length) { sec.dataset.done = '1'; return; }
         if (c===0) sec.innerHTML += `<div id="L${l}"></div>`;
-        document.querySelector(`#L${l}`).innerHTML = lines[l].slice(0, ++c);
-        if (c===lines[l].length) {
+        document.getElementById(`L${l}`).innerHTML = lines[l].slice(0, ++c);
+        if (c===lines[l].length){
           sec.innerHTML += '<br>';
           l++; c=0;
           setTimeout(type, 350);
@@ -180,25 +183,24 @@
       })();
     });
 
-    // Achievements
-    document.querySelector('#achLink').addEventListener('click', e => {
+    // ACHIEVEMENTS reveal + counters
+    document.getElementById('achLink').addEventListener('click', e => {
       e.preventDefault();
-      const ach   = document.querySelector('#achievements'),
-            navH  = document.querySelector('nav').offsetHeight,
-            y     = ach.getBoundingClientRect().top + window.scrollY - navH;
+      const ach  = document.getElementById('achievements'),
+            navH = document.querySelector('nav').offsetHeight,
+            y    = ach.getBoundingClientRect().top + window.scrollY - navH;
       ach.style.display = 'block';
-      window.scrollTo({ top: y, behavior: 'smooth' });
-
+      window.scrollTo({ top:y, behavior:'smooth' });
       if (ach.dataset.started) return;
       ach.dataset.started = '1';
       document.querySelectorAll('.stat-number').forEach(el => {
         const target = +el.getAttribute('data-target'),
               frames = Math.ceil(3000/30);
-        let i=0, timer = setInterval(() => {
+        let i=0, t = setInterval(()=>{
           i++;
-          el.textContent = Math.round(target*(i/frames));
-          if (i>=frames) {
-            clearInterval(timer);
+          el.textContent = Math.round(target * (i/frames));
+          if (i >= frames) {
+            clearInterval(t);
             el.textContent = target;
           }
         }, 30);
