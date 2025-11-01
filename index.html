@@ -1,331 +1,382 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Cpu, Trophy, Code2, Mail, ExternalLink, Github, Linkedin, Award, Rocket, Phone, MapPin, NotebookPen, Star } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-
-const data = {
-  name: "Sparsh Jain",
-  tagline: "Robotics • AI/ML • Student Innovator",
-  location: "Bengaluru, India",
-  email: "sparsh@example.com",
-  phone: "+91 9XXXXXXXXX",
-  socials: [
-    { label: "GitHub", href: "https://github.com/", icon: Github },
-    { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
-  ],
-  summary:
-    "Class 9 innovator building human‑centered tech across robotics, AI and cyber safety. Winner and finalist at national hackathons; passionate about real‑world impact, clean UI, and shipping products.",
-  skills: {
-    software: ["C++", "Python", "HTML", "CSS", "JavaScript"],
-    hardware: [
-      "Arduino (Uno/Nano/Mega)",
-      "ESP Boards (ESP32/NodeMCU)",
-      "Raspberry Pi 5",
-      "Bharat Pi",
-    ],
-    tools: ["Streamlit", "Flask", "OpenCV", "TensorFlow/TF Lite", "Matplotlib", "Git", "Figma"],
-  },
-  highlights: [
-    { k: "Wins", v: "8+", icon: Trophy },
-    { k: "Projects", v: "15+", icon: Rocket },
-    { k: "Talks/Workshops", v: "25+", icon: NotebookPen },
-    { k: "Students Reached", v: "600+", icon: Star },
-  ],
-  projects: [
-    {
-      title: "SAI — Smart Autonomous Irrigation",
-      badges: ["IoT", "ML", "Raspberry Pi"],
-      desc:
-        "Optimizes irrigation using soil moisture sensors + weather forecasts. Automates valves and reduces water waste.",
-      impact: "1st Place — SRM National Automation Robotics Challenge; Winner — Innovate H2O Ideathon",
-      link: "#",
-    },
-    {
-      title: "Soil Smart",
-      badges: ["ESP32", "Sensors", "Web"],
-      desc:
-        "Real‑time pH, moisture and temperature monitoring with alerts, cloud logging and graphs.",
-      impact: "Top 100 — Atal Marathon",
-      link: "#",
-    },
-    {
-      title: "NeuroShield",
-      badges: ["Safety", "IoT", "Edge"],
-      desc:
-        "Smart helmet that prevents scooter start without helmet or on unsafe alcohol level.",
-      impact: "Top 10 — Changemakers World Cup",
-      link: "#",
-    },
-    {
-      title: "SafeSteps",
-      badges: ["Safety", "GPS", "Arduino"],
-      desc:
-        "Tap‑activated SOS in shoes sends SMS with GPS to nearest police station using Morse pattern.",
-      impact: "2nd Place — Empower Hacks 3.0",
-      link: "#",
-    },
-    {
-      title: "CardioAlert",
-      badges: ["Healthcare", "ML"],
-      desc:
-        "Early warning system for cardiac risk with lightweight models and explainable metrics.",
-      impact: "1st — Hack for Health; 1st — CodeKong 2025",
-      link: "#",
-    },
-    {
-      title: "EcoVision",
-      badges: ["Computer Vision", "Recycling"],
-      desc:
-        "CV model and app to classify e‑waste and route to recycling partners; educational mode for schools.",
-      impact: "Pilot in progress",
-      link: "#",
-    },
-  ],
-  achievements: [
-    {
-      year: "2025",
-      items: [
-        "Finalist — IEEE REPOWER (Prototype Stage)",
-        "Winner — CodeKong 2025 (CardioAlert)",
-        "1st — Hack for Health (CardioAlert)",
-        "Top 10 — 1M1B Changemakers World Cup (NeuroShield)",
-      ],
-    },
-    {
-      year: "2024",
-      items: [
-        "Winner — SRM National Automation Robotics Challenge (SAI)",
-        "Winner — Innovate H2O Ideathon (SAI)",
-        "Top 100 — Atal Marathon (Soil Smart)",
-        "Multiple robotics and coding finals across India",
-      ],
-    },
-  ],
-};
-
-const Section = ({ id, title, children }: { id: string; title: string; children: React.ReactNode }) => (
-  <section id={id} className="scroll-mt-24 max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12">
-    <div className="flex items-end justify-between mb-6">
-      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
-    </div>
-    {children}
-  </section>
-);
-
-const Stat = ({ icon: Icon, k, v }: any) => (
-  <Card className="rounded-2xl shadow-sm">
-    <CardContent className="p-5 flex items-center gap-4">
-      <div className="p-2 rounded-xl bg-muted"><Icon className="size-6" /></div>
-      <div>
-        <div className="text-2xl font-semibold leading-6">{v}</div>
-        <div className="text-sm text-muted-foreground">{k}</div>
-      </div>
-    </CardContent>
-  </Card>
-);
-
-const Badge = ({ children }: { children: React.ReactNode }) => (
-  <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium">{children}</span>
-);
-
-export default function Portfolio() {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30 text-foreground">
-      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Cpu className="size-6" />
-            <span className="font-semibold">Sparsh</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#about" className="hover:opacity-80">About</a>
-            <a href="#skills" className="hover:opacity-80">Skills</a>
-            <a href="#projects" className="hover:opacity-80">Projects</a>
-            <a href="#achievements" className="hover:opacity-80">Achievements</a>
-            <a href="#contact" className="hover:opacity-80">Contact</a>
-          </nav>
-          <div className="flex items-center gap-2">
-            {data.socials.map((s) => (
-              <a key={s.label} href={s.href} className="p-2 rounded-xl hover:bg-muted transition-colors" aria-label={s.label}>
-                <s.icon className="size-5" />
-              </a>
-            ))}
-          </div>
-        </div>
-      </header>
-
-      <section className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <div className="inline-flex items-center gap-2 text-xs border rounded-full px-3 py-1 mb-4">
-              <span className="size-2 rounded-full bg-emerald-500" />
-              Open to collabs & talks
-            </div>
-            <h1 className="text-4xl md:text-6xl font-semibold leading-tight tracking-tight">
-              {data.name}
-            </h1>
-            <p className="mt-3 text-lg text-muted-foreground">{data.tagline}</p>
-            <p className="mt-4 text-base leading-7 text-muted-foreground">{data.summary}</p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Button asChild className="rounded-2xl">
-                <a href="#projects">See Projects <ArrowRight className="ml-2 size-4" /></a>
-              </Button>
-              <Button asChild variant="outline" className="rounded-2xl">
-                <a href="#contact">Contact</a>
-              </Button>
-            </div>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <Card className="rounded-3xl shadow-sm">
-              <CardContent className="p-6 grid gap-4">
-                <div className="flex items-center gap-3 text-sm text-muted-foreground"><MapPin className="size-4" />{data.location}</div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {data.highlights.map((h) => (
-                    <Stat key={h.k} icon={h.icon} k={h.k} v={h.v} />
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
-      <Section id="about" title="About">
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="rounded-2xl">
-            <CardContent className="p-6 space-y-3">
-              <div className="font-medium">Who I am</div>
-              <p className="text-muted-foreground">I design, build and ship end‑to‑end prototypes fast — from wiring sensors and writing firmware to ML models and clean UIs. I love turning problems into polished products.</p>
-            </CardContent>
-          </Card>
-          <Card className="rounded-2xl md:col-span-2">
-            <CardContent className="p-6 space-y-3">
-              <div className="font-medium">Recent focus</div>
-              <ul className="list-disc pl-5 text-muted-foreground space-y-2">
-                <li>Safety wearables with on‑device intelligence</li>
-                <li>Low‑cost agri‑tech using ESP32/Raspberry Pi</li>
-                <li>Student cyber safety campaigns and workshops</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </Section>
-
-      <Section id="skills" title="Skills">
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="rounded-2xl">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-2 mb-3 font-medium"><Code2 className="size-5" />Software</div>
-              <div className="flex flex-wrap gap-2">
-                {data.skills.software.map((s) => (
-                  <Badge key={s}>{s}</Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="rounded-2xl">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-2 mb-3 font-medium"><Cpu className="size-5" />Hardware</div>
-              <div className="flex flex-wrap gap-2">
-                {data.skills.hardware.map((s) => (
-                  <Badge key={s}>{s}</Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="rounded-2xl">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-2 mb-3 font-medium"><Award className="size-5" />Tools</div>
-              <div className="flex flex-wrap gap-2">
-                {data.skills.tools.map((s) => (
-                  <Badge key={s}>{s}</Badge>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </Section>
-
-      <Section id="projects" title="Featured Projects">
-        <div className="grid md:grid-cols-2 gap-6">
-          {data.projects.map((p) => (
-            <Card key={p.title} className="rounded-2xl hover:shadow-md transition-shadow">
-              <CardContent className="p-6 space-y-3">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-lg font-semibold">{p.title}</div>
-                    <div className="mt-2 flex flex-wrap gap-2">
-                      {p.badges.map((b: string) => (
-                        <Badge key={b}>{b}</Badge>
-                      ))}
-                    </div>
-                  </div>
-                  <a href={p.link} className="p-2 rounded-xl hover:bg-muted" aria-label="Open"><ExternalLink className="size-5" /></a>
-                </div>
-                <p className="text-muted-foreground leading-7">{p.desc}</p>
-                <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">{p.impact}</div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="achievements" title="Achievements">
-        <div className="grid md:grid-cols-2 gap-6">
-          {data.achievements.map((a) => (
-            <Card key={a.year} className="rounded-2xl">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Trophy className="size-5" />
-                  <div className="text-lg font-semibold">{a.year}</div>
-                </div>
-                <ul className="space-y-2 list-disc pl-5 text-muted-foreground">
-                  {a.items.map((i: string) => (
-                    <li key={i}>{i}</li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section id="contact" title="Contact">
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="rounded-2xl md:col-span-2">
-            <CardContent className="p-6 space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <a href={`mailto:${data.email}`} className="flex items-center gap-3 p-4 border rounded-2xl hover:bg-muted transition-colors"><Mail className="size-5" />{data.email}</a>
-                <a href={`tel:${data.phone}`} className="flex items-center gap-3 p-4 border rounded-2xl hover:bg-muted transition-colors"><Phone className="size-5" />{data.phone}</a>
-              </div>
-              <div className="flex gap-3">
-                {data.socials.map((s) => (
-                  <Button key={s.label} asChild variant="outline" className="rounded-2xl">
-                    <a href={s.href}><s.icon className="mr-2 size-4" />{s.label}</a>
-                  </Button>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="rounded-2xl">
-            <CardContent className="p-6 space-y-3">
-              <div className="font-medium">Resume</div>
-              <p className="text-muted-foreground text-sm">Get the latest resume with projects, awards and contact details.</p>
-              <Button className="rounded-2xl" asChild>
-                <a href="#" download>Download PDF</a>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-      </Section>
-
-      <footer className="border-t">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 h-20 flex items-center justify-between text-sm">
-          <div className="text-muted-foreground">© {new Date().getFullYear()} {data.name}. All rights reserved.</div>
-          <a href="#" className="inline-flex items-center gap-2 hover:opacity-80"><ArrowRight className="size-4" /> Back to top</a>
-        </div>
-      </footer>
-    </div>
-  );
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sparsh Jain — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg: #0b0c10;
+  --panel:#111318;
+  --muted:#191c23;
+  --text:#e9edf1;
+  --sub:#a5adba;
+  --brand:#6ee7b7;
+  --brand-2:#60a5fa;
+  --ring: rgba(110,231,183,.35);
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
 }
+*{box-sizing:border-box}
+html,body{height:100%}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:linear-gradient(180deg,var(--bg),#0e1117 30%, #0b0c10);
+  color:var(--text);
+  letter-spacing:.2px;
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.header{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter: blur(10px);
+  background:rgba(11,12,16,.45);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.header-inner{height:70px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand-icon{
+  width:28px;height:28px;display:grid;place-items:center;border-radius:10px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  box-shadow:0 6px 20px rgba(96,165,250,.35)
+}
+.nav{display:flex;gap:22px}
+.nav a{font-size:14px;color:var(--sub)}
+.nav a:hover{color:#fff}
+.actions{display:flex;gap:12px;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg,#151923,#0f1219);color:#fff;font-weight:600;font-size:14px
+}
+.btn:hover{border-color:rgba(255,255,255,.18)}
+.btn.ghost{background:transparent}
+.icon{width:18px;height:18px;display:inline-block}
+.hero{padding:90px 0 40px}
+.grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:40px}
+.h1{font-size:48px;line-height:1.08;margin:10px 0 6px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);
+  border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:999px}
+.tag-dot{width:8px;height:8px;border-radius:999px;background:var(--brand);box-shadow:0 0 0 6px var(--ring)}
+.lead{color:var(--sub);font-size:16px;line-height:1.7}
+.cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+.panel{
+  background:linear-gradient(180deg,var(--panel),#0f1218);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:18px;padding:22px;box-shadow:var(--shadow)
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid rgba(255,255,255,.06);border-radius:16px;background:#0f1218}
+.stat .k{font-size:12px;color:var(--sub)}
+.stat .v{font-size:22px;font-weight:700}
+.section{padding:50px 0}
+.section h2{font-size:28px;margin:0 0 18px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px;background:#0f1218;transition:transform .25s ease, box-shadow .25s ease;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px}
+.badge{font-size:11px;border:1px solid rgba(255,255,255,.12);padding:6px 9px;border-radius:999px;color:var(--sub)}
+.card h3{font-size:18px;margin:6px 0}
+.card p{color:var(--sub);font-size:14px;line-height:1.7}
+.impact{font-size:13px;color:#8ef0cd;font-weight:600;margin-top:6px}
+.skill-badges{display:flex;flex-wrap:wrap;gap:10px}
+.skill{padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#0f1218;font-size:13px}
+.timeline{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.time-group{border:1px solid rgba(255,255,255,.06);border-radius:16px;background:#0f1218;padding:18px}
+.time-group h4{margin:0 0 8px;font-size:16px}
+.time-group ul{margin:0;padding-left:18px;color:var(--sub);line-height:1.8}
+.contact-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px}
+.input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:#0f1218;color:#fff}
+.footer{border-top:1px solid rgba(255,255,255,.06);padding:28px 0;color:var(--sub);font-size:14px}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.fab{
+  position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;
+  color:#0b0c10;font-weight:900;border:none;box-shadow:0 12px 30px rgba(96,165,250,.4);cursor:pointer
+}
+@media (max-width:1024px){
+  .grid-2{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .timeline{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .h1{font-size:36px}
+  .cards{grid-template-columns:1fr}
+  .nav{display:none}
+}
+.theme{
+  width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.08);
+  background:#0f1218;display:grid;place-items:center;cursor:pointer
+}
+.light{
+  --bg:#fbfbfe; --panel:#ffffff; --muted:#f4f6fb; --text:#0f1221; --sub:#5b6472;
+  --ring: rgba(96,165,250,.25);
+  background:linear-gradient(180deg,#fbfbfe,#f7f9ff 30%, #f5f7ff);
+}
+.light .header{background:rgba(255,255,255,.75)}
+.light .btn{background:linear-gradient(180deg,#ffffff,#f5f7ff);color:#0f1221}
+.light .card,.light .panel,.light .stat,.light .time-group{background:#fff;border-color:rgba(15,18,33,.08)}
+.light .badge{border-color:rgba(15,18,33,.12)}
+.light .footer{border-color:rgba(15,18,33,.08)}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <div class="brand"><span class="brand-icon">⚡</span><span>Sparsh</span></div>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="actions">
+      <button id="theme" class="theme" aria-label="Toggle theme">🌙</button>
+      <a class="btn ghost" href="#contact">Contact</a>
+      <a class="btn" href="#" download>Download Résumé</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <div class="grid-2">
+      <div class="reveal">
+        <span class="tag"><span class="tag-dot"></span> Open to collaborations & talks</span>
+        <h1 class="h1">Sparsh Jain</h1>
+        <div style="font-size:18px;opacity:.9;margin-bottom:6px">Robotics • AI/ML • Student Innovator</div>
+        <p class="lead">I build end-to-end products fast—wiring sensors, writing firmware, training models, and shipping clean UIs. Focused on safety wearables, agri-tech, and cyber safety for students.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">See Projects</a>
+          <a class="btn ghost" href="#skills">Explore Skills</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="panel">
+          <div class="stats">
+            <div class="stat">
+              <div class="icon">🏆</div>
+              <div>
+                <div class="v">8+</div>
+                <div class="k">Wins</div>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="icon">🚀</div>
+              <div>
+                <div class="v">15+</div>
+                <div class="k">Projects</div>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="icon">🎤</div>
+              <div>
+                <div class="v">25+</div>
+                <div class="k">Talks/Workshops</div>
+              </div>
+            </div>
+            <div class="stat">
+              <div class="icon">👥</div>
+              <div>
+                <div class="v">600+</div>
+                <div class="k">Students Reached</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section container">
+    <h2>About</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>Who I Am</h3>
+        <p>I design, build, and ship polished prototypes—combining hardware, software, and ML to solve real problems for people.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Recent Focus</h3>
+        <ul style="margin:0;color:var(--sub);line-height:1.9;padding-left:18px">
+          <li>Safety wearables with on-device intelligence</li>
+          <li>Low-cost agri-tech on ESP32/Raspberry Pi</li>
+          <li>Cyber safety campaigns for schools</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3>Location & Availability</h3>
+        <p>Bengaluru, India • Available for student talks, mentorship, and collaborations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section container">
+    <h2>Skills</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>Software</h3>
+        <div class="skill-badges">
+          <span class="skill">C++</span>
+          <span class="skill">Python</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+        </div>
+      </div>
+      <div class="card reveal">
+        <h3>Hardware</h3>
+        <div class="skill-badges">
+          <span class="skill">Arduino (Uno/Nano/Mega)</span>
+          <span class="skill">ESP32 / NodeMCU</span>
+          <span class="skill">Raspberry Pi 5</span>
+          <span class="skill">Bharat Pi</span>
+        </div>
+      </div>
+      <div class="card reveal">
+        <h3>Tools & ML</h3>
+        <div class="skill-badges">
+          <span class="skill">Streamlit</span>
+          <span class="skill">Flask</span>
+          <span class="skill">OpenCV</span>
+          <span class="skill">TensorFlow Lite</span>
+          <span class="skill">Matplotlib</span>
+          <span class="skill">Git</span>
+          <span class="skill">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section container">
+    <h2>Featured Projects</h2>
+    <div class="cards">
+      <div class="card reveal">
+        <h3>SAI — Smart Autonomous Irrigation</h3>
+        <div class="badges"><span class="badge">IoT</span><span class="badge">ML</span><span class="badge">Raspberry Pi</span></div>
+        <p>Optimizes irrigation using soil sensors and forecast data; automates valves to reduce water waste.</p>
+        <div class="impact">1st — SRM National Automation Robotics Challenge • Winner — Innovate H2O</div>
+      </div>
+      <div class="card reveal">
+        <h3>Soil Smart</h3>
+        <div class="badges"><span class="badge">ESP32</span><span class="badge">Sensors</span><span class="badge">Web</span></div>
+        <p>Real-time pH, moisture, and temperature monitoring with cloud logging and alerts.</p>
+        <div class="impact">Top 100 — Atal Marathon</div>
+      </div>
+      <div class="card reveal">
+        <h3>NeuroShield</h3>
+        <div class="badges"><span class="badge">Safety</span><span class="badge">IoT</span><span class="badge">Edge</span></div>
+        <p>Smart helmet preventing scooter start without helmet or when alcohol level is unsafe.</p>
+        <div class="impact">Top 10 — 1M1B Changemakers World Cup</div>
+      </div>
+      <div class="card reveal">
+        <h3>SafeSteps</h3>
+        <div class="badges"><span class="badge">GPS</span><span class="badge">Arduino</span><span class="badge">SOS</span></div>
+        <p>Tap-activated SOS in shoes using Morse pattern to send SMS with GPS to authorities.</p>
+        <div class="impact">2nd — Empower Hacks 3.0</div>
+      </div>
+      <div class="card reveal">
+        <h3>CardioAlert</h3>
+        <div class="badges"><span class="badge">Healthcare</span><span class="badge">ML</span></div>
+        <p>Lightweight risk screening with explainable metrics and early warning notifications.</p>
+        <div class="impact">1st — Hack for Health • 1st — CodeKong 2025</div>
+      </div>
+      <div class="card reveal">
+        <h3>EcoVision</h3>
+        <div class="badges"><span class="badge">Computer Vision</span><span class="badge">Recycling</span></div>
+        <p>Classifies e-waste and routes to partners; includes a school education mode.</p>
+        <div class="impact">Pilot in progress</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements" class="section container">
+    <h2>Achievements</h2>
+    <div class="timeline">
+      <div class="time-group reveal">
+        <h4>2025</h4>
+        <ul>
+          <li>Winner — CodeKong 2025 (CardioAlert)</li>
+          <li>1st — Hack for Health (CardioAlert)</li>
+          <li>IEEE REPOWER — Prototype Stage Finalist</li>
+          <li>Changemakers World Cup — Finalist (Top 10)</li>
+        </ul>
+      </div>
+      <div class="time-group reveal">
+        <h4>2024</h4>
+        <ul>
+          <li>Winner — SRM National Automation Robotics Challenge (SAI)</li>
+          <li>Winner — Innovate H2O Ideathon (SAI)</li>
+          <li>Top 100 — Atal Marathon (Soil Smart)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section container">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="card reveal">
+        <form id="contactForm" onsubmit="sendMail(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <input class="input" required placeholder="Your name" id="name">
+            <input class="input" required type="email" placeholder="Your email" id="email">
+          </div>
+          <input class="input" required placeholder="Subject" style="margin-top:12px" id="subject">
+          <textarea class="input" required placeholder="Message" rows="5" style="margin-top:12px;resize:vertical" id="message"></textarea>
+          <div style="display:flex;gap:12px;margin-top:12px">
+            <button class="btn" type="submit">Send</button>
+            <a class="btn ghost" href="mailto:sparsh@example.com">Email Directly</a>
+          </div>
+        </form>
+      </div>
+      <div class="card reveal">
+        <h3>Links</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+          <a class="btn ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="#" download>Download Résumé</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+    <div>© <span id="year"></span> Sparsh Jain. All rights reserved.</div>
+    <a href="#top" class="btn ghost">Back to top</a>
+  </div>
+</footer>
+
+<button id="toTop" class="fab" title="Top">↑</button>
+
+<script>
+const root=document.documentElement,body=document.body,themeBtn=document.getElementById('theme');
+const saved=localStorage.getItem('theme'); if(saved==='light') body.classList.add('light');
+themeBtn.textContent=body.classList.contains('light')?'🌞':'🌙';
+themeBtn.addEventListener('click',()=>{body.classList.toggle('light');localStorage.setItem('theme',body.classList.contains('light')?'light':'dark');themeBtn.textContent=body.classList.contains('light')?'🌞':'🌙';});
+document.getElementById('year').textContent=new Date().getFullYear();
+const toTop=document.getElementById('toTop'); toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+window.addEventListener('scroll',()=>{toTop.style.display=window.scrollY>600?'grid':'none';}); toTop.style.display='none';
+const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}})},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+function sendMail(e){
+  e.preventDefault();
+  const n=document.getElementById('name').value.trim();
+  const em=document.getElementById('email').value.trim();
+  const s=document.getElementById('subject').value.trim();
+  const m=document.getElementById('message').value.trim();
+  const mailto=`mailto:sparsh@example.com?subject=${encodeURIComponent('[Portfolio] '+s)}&body=${encodeURIComponent('From: '+n+' <'+em+'>\n\n'+m)}`;
+  window.location.href=mailto;
+}
+</script>
+</body>
+</html>
