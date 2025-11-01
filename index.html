@@ -1,1288 +1,331 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Sparsh Robotics • Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --bg: #0a0e17;
-      --panel: #161f30;
-      --card: #1e2a3a;
-      --accent: #4a86e8;
-      --accent-hover: #5d94f0;
-      --text: #e6e6e6;
-      --text-secondary: #a0aec0;
-      --success: #48bb78;
-      --warning: #ed8936;
-      --danger: #e53e3e;
-      --border-radius: 12px;
-      --transition: all 0.3s ease;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-      --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.7);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    a:hover {
-      color: var(--accent-hover);
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    main {
-      margin-top: 5rem;
-    }
-
-    section {
-      padding: 5rem 0;
-      scroll-margin-top: 120px;
-      position: relative;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: var(--accent);
-      margin: 0.8rem auto;
-      border-radius: 2px;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 14, 23, 0.95);
-      padding: 1rem 5%;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-      transition: var(--transition);
-    }
-
-    nav.scrolled {
-      padding: 0.8rem 5%;
-      background: rgba(10, 14, 23, 0.98);
-      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
-    }
-
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .logo i {
-      color: var(--warning);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      position: relative;
-      padding: 0.5rem 0;
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background: var(--accent);
-      transition: var(--transition);
-      border-radius: 2px;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a.active::after {
-      width: 100%;
-    }
-
-    .mobile-toggle {
-      display: none;
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: var(--accent);
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding-top: 2rem;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(74, 134, 232, 0.1) 0%, rgba(10, 14, 23, 0) 70%);
-      z-index: -1;
-    }
-
-    .hero-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 3rem;
-      width: 100%;
-    }
-
-    .hero-text {
-      flex: 1;
-      max-width: 600px;
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18rem;
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    .hero-subtitle i {
-      color: var(--accent);
-    }
-
-    .hero-rotator {
-      display: inline-block;
-      padding: 0.35rem 0.9rem;
-      background: rgba(74, 134, 232, 0.15);
-      border-radius: 999px;
-      color: var(--accent);
-      font-weight: 600;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .hero-rotator.hide {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 5vw, 4.3rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 span {
-      color: var(--accent);
-      position: relative;
-    }
-
-    .hero h1 span::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 8px;
-      background: var(--warning);
-      opacity: 0.35;
-      z-index: -1;
-    }
-
-    .hero p {
-      font-size: clamp(1.1rem, 2.3vw, 1.45rem);
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      max-width: 520px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      padding: 1rem 2.2rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      box-shadow: var(--shadow);
-    }
-
-    .btn:hover {
-      background: var(--accent-hover);
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-    }
-
-    .btn-outline:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    .hero-stat {
-      background: var(--card);
-      border-radius: var(--border-radius);
-      padding: 1.6rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .hero-stat:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .hero-stat h3 {
-      font-size: 2.1rem;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-      font-weight: 700;
-    }
-
-    .hero-stat p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    .hero-image {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .avatar-container {
-      position: relative;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      border: 5px solid var(--accent);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .avatar-container::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(transparent, var(--accent), transparent 30%);
-      animation: rotate 4s linear infinite;
-    }
-
-    .avatar-container::after {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      background: var(--bg);
-      z-index: 1;
-    }
-
-    .avatar {
-      position: absolute;
-      inset: 10px;
-      border-radius: 50%;
-      overflow: hidden;
-      z-index: 2;
-      background: linear-gradient(45deg, #1e2a3a, #0d1b2a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    #about {
-      background: var(--panel);
-    }
-
-    .about-content {
-      display: flex;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text {
-      flex: 1;
-    }
-
-    .about-text p {
-      margin-bottom: 1.5rem;
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-    }
-
-    .about-highlights {
-      display: grid;
-      gap: 1.2rem;
-      margin-top: 2rem;
-    }
-
-    .about-highlight {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      background: rgba(74, 134, 232, 0.12);
-      padding: 1rem 1.3rem;
-      border-radius: var(--border-radius);
-    }
-
-    .about-highlight i {
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin-top: 0.25rem;
-    }
-
-    .about-highlight span {
-      color: var(--text);
-      font-weight: 600;
-      display: block;
-      margin-bottom: 0.3rem;
-    }
-
-    .about-highlight p {
-      color: var(--text-secondary);
-      margin: 0;
-    }
-
-    .typed-content {
-      background: var(--card);
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      min-height: 220px;
-      font-family: 'Courier New', monospace;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      flex: 1;
-    }
-
-    .typed-content .string {
-      color: #ce9178;
-    }
-
-    .typed-content .comment {
-      color: #6a9955;
-    }
-
-    .typed-content .key {
-      color: #9cdcfe;
-    }
-
-    #timeline {
-      background: var(--bg);
-    }
-
-    .timeline {
-      position: relative;
-      margin-top: 3rem;
-      padding-left: 2.5rem;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 18px;
-      width: 4px;
-      height: 100%;
-      background: rgba(74, 134, 232, 0.3);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 3rem;
-      padding-left: 2.5rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: 0.6s ease;
-    }
-
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .timeline-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: -2px;
-      top: 1.1rem;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(74, 134, 232, 0.2);
-    }
-
-    .timeline-date {
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.7rem;
-      letter-spacing: 0.08rem;
-    }
-
-    .timeline-content {
-      background: var(--card);
-      border-radius: var(--border-radius);
-      padding: 1.8rem;
-      box-shadow: var(--shadow);
-    }
-
-    .timeline-content h3 {
-      font-size: 1.45rem;
-      margin-bottom: 0.6rem;
-      color: var(--text);
-    }
-
-    .timeline-content p {
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-
-    .timeline-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    .timeline-badge {
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      font-weight: 600;
-      background: rgba(74, 134, 232, 0.2);
-      color: var(--accent);
-    }
-
-    .timeline-badge.gold {
-      background: rgba(72, 187, 120, 0.25);
-      color: var(--success);
-    }
-
-    .timeline-badge.silver {
-      background: rgba(74, 134, 232, 0.2);
-      color: var(--accent);
-    }
-
-    .timeline-badge.bronze {
-      background: rgba(237, 137, 54, 0.2);
-      color: var(--warning);
-    }
-
-    #skills {
-      background: var(--panel);
-    }
-
-    .skills-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .skill-category {
-      background: var(--card);
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .skill-category:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .skill-category h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .skill-category h3 i {
-      font-size: 1.8rem;
-    }
-
-    .skill-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .skill-item {
-      background: rgba(74, 134, 232, 0.15);
-      color: var(--accent);
-      padding: 0.55rem 1.1rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: var(--transition);
-    }
-
-    .skill-item:hover {
-      background: var(--accent);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    #achievements {
-      background: var(--bg);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .stat-card {
-      background: var(--card);
-      border-radius: var(--border-radius);
-      padding: 2rem;
-      text-align: center;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .stat-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .stat-icon {
-      font-size: 3rem;
-      margin-bottom: 1.3rem;
-      color: var(--accent);
-    }
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-    }
-
-    .achievements-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-    }
-
-    .achievement-card {
-      background: var(--card);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-
-    .achievement-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .achievement-header {
-      padding: 1.5rem;
-      background: rgba(74, 134, 232, 0.12);
-      border-bottom: 2px solid var(--accent);
-    }
-
-    .achievement-header h3 {
-      font-size: 1.35rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .achievement-header .date {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .achievement-body {
-      padding: 1.5rem;
-    }
-
-    .achievement-body p {
-      margin-bottom: 1rem;
-      color: var(--text-secondary);
-    }
-
-    .achievement-badge {
-      display: inline-block;
-      padding: 0.3rem 0.85rem;
-      background: var(--accent);
-      color: white;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05rem;
-    }
-
-    #contact {
-      background: var(--panel);
-      text-align: center;
-    }
-
-    .contact-content {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .contact-content p {
-      color: var(--text-secondary);
-      font-size: 1.05rem;
-      margin: 1.5rem 0 2.5rem;
-    }
-
-    .contact-icons {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .contact-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: var(--card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      color: var(--accent);
-      transition: var(--transition);
-      box-shadow: var(--shadow);
-    }
-
-    .contact-icon:hover {
-      transform: translateY(-5px);
-      background: var(--accent);
-      color: white;
-    }
-
-    footer {
-      background: #080b12;
-      padding: 3rem 0;
-      text-align: center;
-    }
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.2rem;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1.5rem;
-      margin: 0.5rem 0 1.5rem;
-    }
-
-    .social-link {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      color: var(--accent);
-      transition: var(--transition);
-      box-shadow: var(--shadow);
-    }
-
-    .social-link:hover {
-      background: var(--accent);
-      color: white;
-      transform: translateY(-5px);
-    }
-
-    footer p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-12px);
-      }
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes rotate {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @media (max-width: 1080px) {
-      .hero-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-text {
-        max-width: none;
-      }
-
-      .hero-buttons {
-        justify-content: center;
-      }
-
-      .hero-stats {
-        justify-items: center;
-      }
-
-      .hero-image {
-        order: -1;
-      }
-
-      .about-content {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        right: 5%;
-        background: var(--panel);
-        flex-direction: column;
-        gap: 1.2rem;
-        width: 230px;
-        padding: 1.5rem;
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-        display: none;
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .mobile-toggle {
-        display: block;
-      }
-
-      .hero {
-        padding-top: 4rem;
-      }
-
-      .timeline {
-        padding-left: 1.8rem;
-      }
-
-      .timeline::before {
-        left: 12px;
-      }
-
-      .timeline-item {
-        padding-left: 2rem;
-      }
-
-      .timeline-dot {
-        left: -4px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      section {
-        padding: 4rem 0;
-      }
-
-      .hero h1 {
-        font-size: 2.4rem;
-      }
-
-      .hero p {
-        font-size: 1.05rem;
-      }
-
-      .hero-stats {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      }
-
-      .timeline {
-        padding-left: 1.4rem;
-      }
-
-      .timeline-item {
-        padding-left: 1.8rem;
-      }
-
-      .timeline-dot {
-        display: none;
-      }
-
-      .timeline::before {
-        left: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <div class="logo"><i class="fa-solid fa-robot"></i>Sparsh Robotics</div>
-    <div class="mobile-toggle" aria-label="Toggle navigation" aria-expanded="false"><i class="fa-solid fa-bars"></i></div>
-    <div class="nav-links">
-      <a href="#home" class="active">Home</a>
-      <a href="#about">About</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#skills">Skills</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#contact">Contact</a>
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowRight, Cpu, Trophy, Code2, Mail, ExternalLink, Github, Linkedin, Award, Rocket, Phone, MapPin, NotebookPen, Star } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+const data = {
+  name: "Sparsh Jain",
+  tagline: "Robotics • AI/ML • Student Innovator",
+  location: "Bengaluru, India",
+  email: "sparsh@example.com",
+  phone: "+91 9XXXXXXXXX",
+  socials: [
+    { label: "GitHub", href: "https://github.com/", icon: Github },
+    { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
+  ],
+  summary:
+    "Class 9 innovator building human‑centered tech across robotics, AI and cyber safety. Winner and finalist at national hackathons; passionate about real‑world impact, clean UI, and shipping products.",
+  skills: {
+    software: ["C++", "Python", "HTML", "CSS", "JavaScript"],
+    hardware: [
+      "Arduino (Uno/Nano/Mega)",
+      "ESP Boards (ESP32/NodeMCU)",
+      "Raspberry Pi 5",
+      "Bharat Pi",
+    ],
+    tools: ["Streamlit", "Flask", "OpenCV", "TensorFlow/TF Lite", "Matplotlib", "Git", "Figma"],
+  },
+  highlights: [
+    { k: "Wins", v: "8+", icon: Trophy },
+    { k: "Projects", v: "15+", icon: Rocket },
+    { k: "Talks/Workshops", v: "25+", icon: NotebookPen },
+    { k: "Students Reached", v: "600+", icon: Star },
+  ],
+  projects: [
+    {
+      title: "SAI — Smart Autonomous Irrigation",
+      badges: ["IoT", "ML", "Raspberry Pi"],
+      desc:
+        "Optimizes irrigation using soil moisture sensors + weather forecasts. Automates valves and reduces water waste.",
+      impact: "1st Place — SRM National Automation Robotics Challenge; Winner — Innovate H2O Ideathon",
+      link: "#",
+    },
+    {
+      title: "Soil Smart",
+      badges: ["ESP32", "Sensors", "Web"],
+      desc:
+        "Real‑time pH, moisture and temperature monitoring with alerts, cloud logging and graphs.",
+      impact: "Top 100 — Atal Marathon",
+      link: "#",
+    },
+    {
+      title: "NeuroShield",
+      badges: ["Safety", "IoT", "Edge"],
+      desc:
+        "Smart helmet that prevents scooter start without helmet or on unsafe alcohol level.",
+      impact: "Top 10 — Changemakers World Cup",
+      link: "#",
+    },
+    {
+      title: "SafeSteps",
+      badges: ["Safety", "GPS", "Arduino"],
+      desc:
+        "Tap‑activated SOS in shoes sends SMS with GPS to nearest police station using Morse pattern.",
+      impact: "2nd Place — Empower Hacks 3.0",
+      link: "#",
+    },
+    {
+      title: "CardioAlert",
+      badges: ["Healthcare", "ML"],
+      desc:
+        "Early warning system for cardiac risk with lightweight models and explainable metrics.",
+      impact: "1st — Hack for Health; 1st — CodeKong 2025",
+      link: "#",
+    },
+    {
+      title: "EcoVision",
+      badges: ["Computer Vision", "Recycling"],
+      desc:
+        "CV model and app to classify e‑waste and route to recycling partners; educational mode for schools.",
+      impact: "Pilot in progress",
+      link: "#",
+    },
+  ],
+  achievements: [
+    {
+      year: "2025",
+      items: [
+        "Finalist — IEEE REPOWER (Prototype Stage)",
+        "Winner — CodeKong 2025 (CardioAlert)",
+        "1st — Hack for Health (CardioAlert)",
+        "Top 10 — 1M1B Changemakers World Cup (NeuroShield)",
+      ],
+    },
+    {
+      year: "2024",
+      items: [
+        "Winner — SRM National Automation Robotics Challenge (SAI)",
+        "Winner — Innovate H2O Ideathon (SAI)",
+        "Top 100 — Atal Marathon (Soil Smart)",
+        "Multiple robotics and coding finals across India",
+      ],
+    },
+  ],
+};
+
+const Section = ({ id, title, children }: { id: string; title: string; children: React.ReactNode }) => (
+  <section id={id} className="scroll-mt-24 max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-12">
+    <div className="flex items-end justify-between mb-6">
+      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">{title}</h2>
     </div>
-  </nav>
-  <main>
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-content">
-          <div class="hero-text">
-            <div class="hero-subtitle"><i class="fa-solid fa-signal"></i><span class="hero-rotator">Autonomous Systems Engineer</span></div>
-            <h1>Hi, I&apos;m <span>Sparsh Singh</span></h1>
-            <p>I design and pilot competitive robots that thrive under pressure, from autonomous navigation challenges to high-stakes alliance battles on the world stage.</p>
-            <div class="hero-buttons">
-              <a class="btn" href="#timeline"><i class="fa-regular fa-calendar"></i>Explore timeline</a>
-              <a class="btn btn-outline" href="#contact"><i class="fa-regular fa-paper-plane"></i>Let&apos;s collaborate</a>
-            </div>
-            <div class="hero-stats">
-              <div class="hero-stat">
-                <h3>12+</h3>
-                <p>Major competitions led</p>
-              </div>
-              <div class="hero-stat">
-                <h3>7</h3>
-                <p>Podium finishes since 2020</p>
-              </div>
-              <div class="hero-stat">
-                <h3>4</h3>
-                <p>Continents represented</p>
-              </div>
-            </div>
+    {children}
+  </section>
+);
+
+const Stat = ({ icon: Icon, k, v }: any) => (
+  <Card className="rounded-2xl shadow-sm">
+    <CardContent className="p-5 flex items-center gap-4">
+      <div className="p-2 rounded-xl bg-muted"><Icon className="size-6" /></div>
+      <div>
+        <div className="text-2xl font-semibold leading-6">{v}</div>
+        <div className="text-sm text-muted-foreground">{k}</div>
+      </div>
+    </CardContent>
+  </Card>
+);
+
+const Badge = ({ children }: { children: React.ReactNode }) => (
+  <span className="inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium">{children}</span>
+);
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30 text-foreground">
+      <header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Cpu className="size-6" />
+            <span className="font-semibold">Sparsh</span>
           </div>
-          <div class="hero-image">
-            <div class="avatar-container">
-              <div class="avatar">
-                <img src="images/avatar.png" alt="Sparsh Singh portrait">
-              </div>
-            </div>
+          <nav className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#about" className="hover:opacity-80">About</a>
+            <a href="#skills" className="hover:opacity-80">Skills</a>
+            <a href="#projects" className="hover:opacity-80">Projects</a>
+            <a href="#achievements" className="hover:opacity-80">Achievements</a>
+            <a href="#contact" className="hover:opacity-80">Contact</a>
+          </nav>
+          <div className="flex items-center gap-2">
+            {data.socials.map((s) => (
+              <a key={s.label} href={s.href} className="p-2 rounded-xl hover:bg-muted transition-colors" aria-label={s.label}>
+                <s.icon className="size-5" />
+              </a>
+            ))}
           </div>
         </div>
-      </div>
-    </section>
-    <section id="about">
-      <div class="container">
-        <h2 class="section-title">About me</h2>
-        <div class="about-content">
-          <div class="about-text">
-            <p>I lead Sparsh Robotics, a competition-focused team that blends rapid prototyping, robust control software, and match-day strategy. My approach is human-centered: build reliable machines, train confident drivers, and mentor the next wave of builders.</p>
-            <p>From scrappy local scrimmages to international finals, I have learned how to turn complex problems into modular systems that can be iterated overnight. I am equally comfortable with CAD reviews, tuning PID controllers, or briefing alliance partners minutes before a knockout match.</p>
-            <div class="about-highlights">
-              <div class="about-highlight">
-                <i class="fa-solid fa-cubes"></i>
-                <div>
-                  <span>System architect</span>
-                  <p>Full-stack ownership across drivetrain, manipulator design, and autonomous pathing for field-specific challenges.</p>
+      </header>
+
+      <section className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-24">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="inline-flex items-center gap-2 text-xs border rounded-full px-3 py-1 mb-4">
+              <span className="size-2 rounded-full bg-emerald-500" />
+              Open to collabs & talks
+            </div>
+            <h1 className="text-4xl md:text-6xl font-semibold leading-tight tracking-tight">
+              {data.name}
+            </h1>
+            <p className="mt-3 text-lg text-muted-foreground">{data.tagline}</p>
+            <p className="mt-4 text-base leading-7 text-muted-foreground">{data.summary}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <Button asChild className="rounded-2xl">
+                <a href="#projects">See Projects <ArrowRight className="ml-2 size-4" /></a>
+              </Button>
+              <Button asChild variant="outline" className="rounded-2xl">
+                <a href="#contact">Contact</a>
+              </Button>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
+            <Card className="rounded-3xl shadow-sm">
+              <CardContent className="p-6 grid gap-4">
+                <div className="flex items-center gap-3 text-sm text-muted-foreground"><MapPin className="size-4" />{data.location}</div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {data.highlights.map((h) => (
+                    <Stat key={h.k} icon={h.icon} k={h.k} v={h.v} />
+                  ))}
                 </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      <Section id="about" title="About">
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card className="rounded-2xl">
+            <CardContent className="p-6 space-y-3">
+              <div className="font-medium">Who I am</div>
+              <p className="text-muted-foreground">I design, build and ship end‑to‑end prototypes fast — from wiring sensors and writing firmware to ML models and clean UIs. I love turning problems into polished products.</p>
+            </CardContent>
+          </Card>
+          <Card className="rounded-2xl md:col-span-2">
+            <CardContent className="p-6 space-y-3">
+              <div className="font-medium">Recent focus</div>
+              <ul className="list-disc pl-5 text-muted-foreground space-y-2">
+                <li>Safety wearables with on‑device intelligence</li>
+                <li>Low‑cost agri‑tech using ESP32/Raspberry Pi</li>
+                <li>Student cyber safety campaigns and workshops</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      <Section id="skills" title="Skills">
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card className="rounded-2xl">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-2 mb-3 font-medium"><Code2 className="size-5" />Software</div>
+              <div className="flex flex-wrap gap-2">
+                {data.skills.software.map((s) => (
+                  <Badge key={s}>{s}</Badge>
+                ))}
               </div>
-              <div class="about-highlight">
-                <i class="fa-solid fa-people-group"></i>
-                <div>
-                  <span>Team catalyst</span>
-                  <p>Coach and coordinate multidisciplinary subteams, keeping everyone aligned on data-driven iteration goals.</p>
+            </CardContent>
+          </Card>
+          <Card className="rounded-2xl">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-2 mb-3 font-medium"><Cpu className="size-5" />Hardware</div>
+              <div className="flex flex-wrap gap-2">
+                {data.skills.hardware.map((s) => (
+                  <Badge key={s}>{s}</Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+          <Card className="rounded-2xl">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-2 mb-3 font-medium"><Award className="size-5" />Tools</div>
+              <div className="flex flex-wrap gap-2">
+                {data.skills.tools.map((s) => (
+                  <Badge key={s}>{s}</Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </Section>
+
+      <Section id="projects" title="Featured Projects">
+        <div className="grid md:grid-cols-2 gap-6">
+          {data.projects.map((p) => (
+            <Card key={p.title} className="rounded-2xl hover:shadow-md transition-shadow">
+              <CardContent className="p-6 space-y-3">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="text-lg font-semibold">{p.title}</div>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {p.badges.map((b: string) => (
+                        <Badge key={b}>{b}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                  <a href={p.link} className="p-2 rounded-xl hover:bg-muted" aria-label="Open"><ExternalLink className="size-5" /></a>
                 </div>
-              </div>
-              <div class="about-highlight">
-                <i class="fa-solid fa-lightbulb"></i>
-                <div>
-                  <span>Innovation mindset</span>
-                  <p>Prototype unconventional mechanisms that unlock scoring advantages while staying within competition rules.</p>
+                <p className="text-muted-foreground leading-7">{p.desc}</p>
+                <div className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">{p.impact}</div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="achievements" title="Achievements">
+        <div className="grid md:grid-cols-2 gap-6">
+          {data.achievements.map((a) => (
+            <Card key={a.year} className="rounded-2xl">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <Trophy className="size-5" />
+                  <div className="text-lg font-semibold">{a.year}</div>
                 </div>
+                <ul className="space-y-2 list-disc pl-5 text-muted-foreground">
+                  {a.items.map((i: string) => (
+                    <li key={i}>{i}</li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="contact" title="Contact">
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card className="rounded-2xl md:col-span-2">
+            <CardContent className="p-6 space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <a href={`mailto:${data.email}`} className="flex items-center gap-3 p-4 border rounded-2xl hover:bg-muted transition-colors"><Mail className="size-5" />{data.email}</a>
+                <a href={`tel:${data.phone}`} className="flex items-center gap-3 p-4 border rounded-2xl hover:bg-muted transition-colors"><Phone className="size-5" />{data.phone}</a>
               </div>
-            </div>
-          </div>
-          <div class="typed-content">
-            <p><span class="key">const</span> sparshRobotics = {</p>
-            <p>&nbsp;&nbsp;mission: <span class="string">&apos;Build purposeful autonomous machines&apos;</span>,</p>
-            <p>&nbsp;&nbsp;favoritePlatform: <span class="string">&apos;FIRST Tech Challenge&apos;</span>,</p>
-            <p>&nbsp;&nbsp;strengths: [<span class="string">&apos;ROS&apos;</span>, <span class="string">&apos;Path Planning&apos;</span>, <span class="string">&apos;Driver Coaching&apos;</span>],</p>
-            <p>&nbsp;&nbsp;nextGoal: <span class="string">&apos;Secure a podium at World Robotics League&apos;</span></p>
-            <p>};</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="timeline">
-      <div class="container">
-        <h2 class="section-title">Competition timeline</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2024</div>
-            <div class="timeline-content">
-              <h3>World Robotics League Finals</h3>
-              <p>Directed a swarm navigation strategy that delivered consistent autonomous cycles and endgame climbs, leading the alliance to an undefeated run.</p>
-              <div class="timeline-meta">
-                <span class="timeline-badge gold">Champion</span>
-                <span>Singapore • Autonomous Swarm Challenge</span>
+              <div className="flex gap-3">
+                {data.socials.map((s) => (
+                  <Button key={s.label} asChild variant="outline" className="rounded-2xl">
+                    <a href={s.href}><s.icon className="mr-2 size-4" />{s.label}</a>
+                  </Button>
+                ))}
               </div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2023</div>
-            <div class="timeline-content">
-              <h3>FIRST Tech Challenge Nationals</h3>
-              <p>Engineered a modular scoring arm with on-the-fly gearing swaps and captained our alliance through a clutch semifinal tiebreaker.</p>
-              <div class="timeline-meta">
-                <span class="timeline-badge silver">National runner-up</span>
-                <span>New Delhi • Centerstage Season</span>
-              </div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2022</div>
-            <div class="timeline-content">
-              <h3>RoboCup Junior Rescue</h3>
-              <p>Designed adaptive sensor fusion for maze solving, giving our autonomous bot a 30% faster completion time than previous records.</p>
-              <div class="timeline-meta">
-                <span class="timeline-badge gold">Zonal champion</span>
-                <span>Mumbai • Rescue Simulation</span>
-              </div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-date">2021</div>
-            <div class="timeline-content">
-              <h3>Techfest Robowars</h3>
-              <p>Built a compact vertical spinner with swap-ready armor plates, earning top marks for strategic play and pit-stop efficiency.</p>
-              <div class="timeline-meta">
-                <span class="timeline-badge bronze">Best strategy award</span>
-                <span>Mumbai • Combat Robotics</span>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
+          <Card className="rounded-2xl">
+            <CardContent className="p-6 space-y-3">
+              <div className="font-medium">Resume</div>
+              <p className="text-muted-foreground text-sm">Get the latest resume with projects, awards and contact details.</p>
+              <Button className="rounded-2xl" asChild>
+                <a href="#" download>Download PDF</a>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
-      </div>
-    </section>
-    <section id="skills">
-      <div class="container">
-        <h2 class="section-title">Skills stack</h2>
-        <div class="skills-container">
-          <div class="skill-category">
-            <h3><i class="fa-solid fa-microchip"></i> Autonomous control</h3>
-            <div class="skill-list">
-              <span class="skill-item">ROS 2</span>
-              <span class="skill-item">Path planning</span>
-              <span class="skill-item">State estimation</span>
-              <span class="skill-item">Sensor fusion</span>
-              <span class="skill-item">OpenCV</span>
-              <span class="skill-item">AprilTag localization</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <h3><i class="fa-solid fa-gears"></i> Mechanical design</h3>
-            <div class="skill-list">
-              <span class="skill-item">Onshape</span>
-              <span class="skill-item">Rapid prototyping</span>
-              <span class="skill-item">Drivetrain architecture</span>
-              <span class="skill-item">Finite element analysis</span>
-              <span class="skill-item">Manufacturability review</span>
-              <span class="skill-item">Pit workflow optimization</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <h3><i class="fa-solid fa-rocket"></i> Strategy &amp; leadership</h3>
-            <div class="skill-list">
-              <span class="skill-item">Match analytics</span>
-              <span class="skill-item">Alliance coordination</span>
-              <span class="skill-item">Driver coaching</span>
-              <span class="skill-item">Technical storytelling</span>
-              <span class="skill-item">STEM outreach</span>
-              <span class="skill-item">Judging presentations</span>
-            </div>
-          </div>
+      </Section>
+
+      <footer className="border-t">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8 h-20 flex items-center justify-between text-sm">
+          <div className="text-muted-foreground">© {new Date().getFullYear()} {data.name}. All rights reserved.</div>
+          <a href="#" className="inline-flex items-center gap-2 hover:opacity-80"><ArrowRight className="size-4" /> Back to top</a>
         </div>
-      </div>
-    </section>
-    <section id="achievements">
-      <div class="container">
-        <h2 class="section-title">Impact highlights</h2>
-        <div class="stats">
-          <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-trophy"></i></div>
-            <div class="stat-number">18</div>
-            <div class="stat-label">Awards earned</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
-            <div class="stat-number">45+</div>
-            <div class="stat-label">Students mentored</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon"><i class="fa-solid fa-stopwatch"></i></div>
-            <div class="stat-number">96%</div>
-            <div class="stat-label">Autonomous success rate</div>
-          </div>
-        </div>
-        <div class="achievements-grid">
-          <div class="achievement-card">
-            <div class="achievement-header">
-              <h3>Innovation award</h3>
-              <span class="date">World Robotics League • 2024</span>
-            </div>
-            <div class="achievement-body">
-              <p>Recognized for a modular drone docking system that enabled rapid subsystem swaps during finals.</p>
-              <span class="achievement-badge">Autonomous systems</span>
-            </div>
-          </div>
-          <div class="achievement-card">
-            <div class="achievement-header">
-              <h3>Motivate award</h3>
-              <span class="date">FIRST Tech Challenge • 2023</span>
-            </div>
-            <div class="achievement-body">
-              <p>Led community workshops that introduced robotics fundamentals to 400+ students across three cities.</p>
-              <span class="achievement-badge">Community impact</span>
-            </div>
-          </div>
-          <div class="achievement-card">
-            <div class="achievement-header">
-              <h3>Design excellence</h3>
-              <span class="date">RoboCup Junior • 2022</span>
-            </div>
-            <div class="achievement-body">
-              <p>Delivered a resilient rescue bot with redundant sensing and self-righting geometry for complex terrains.</p>
-              <span class="achievement-badge">System design</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Let&apos;s build together</h2>
-        <div class="contact-content">
-          <p>Looking for a strategy partner, a technical speaker, or a mentor for your next robotics sprint? Reach out and let&apos;s create something bold.</p>
-          <div class="contact-icons">
-            <a class="contact-icon" href="mailto:sparsh.robotics@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
-            <a class="contact-icon" href="https://www.instagram.com/sparsh.robotics" target="_blank" rel="noreferrer noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a class="contact-icon" href="https://www.linkedin.com/in/sparsh-robotics" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a class="contact-icon" href="https://github.com/sparsh-robotics" target="_blank" rel="noreferrer noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          </div>
-          <a class="btn" href="mailto:sparsh.robotics@gmail.com"><i class="fa-solid fa-comments"></i>Start a conversation</a>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="social-links">
-          <a class="social-link" href="https://www.youtube.com/@sparshrobotics" target="_blank" rel="noreferrer noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a class="social-link" href="https://www.instagram.com/sparsh.robotics" target="_blank" rel="noreferrer noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a class="social-link" href="https://www.linkedin.com/in/sparsh-robotics" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a class="social-link" href="https://github.com/sparsh-robotics" target="_blank" rel="noreferrer noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-        </div>
-        <p>© 2024 Sparsh Robotics. Built for teams who love the thrill of the next match.</p>
-      </div>
+      </footer>
     </div>
-  </footer>
-  <script>
-    const mobileToggle = document.querySelector('.mobile-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (mobileToggle && navLinks) {
-      mobileToggle.addEventListener('click', () => {
-        const expanded = navLinks.classList.toggle('open');
-        mobileToggle.setAttribute('aria-expanded', expanded);
-      });
-      navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => navLinks.classList.remove('open'));
-      });
-    }
-    const nav = document.querySelector('nav');
-    if (nav) {
-      const handleScroll = () => {
-        if (window.scrollY > 50) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-      };
-      handleScroll();
-      window.addEventListener('scroll', handleScroll);
-    }
-    const sections = Array.from(document.querySelectorAll('main section'));
-    if (sections.length) {
-      const navObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            document.querySelectorAll('.nav-links a').forEach(link => {
-              if (link.getAttribute('href') === `#${id}`) {
-                link.classList.add('active');
-              } else {
-                link.classList.remove('active');
-              }
-            });
-          }
-        });
-      }, { threshold: 0.55 });
-      sections.forEach(section => navObserver.observe(section));
-    }
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    if (timelineItems.length) {
-      const timelineObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.3 });
-      timelineItems.forEach(item => timelineObserver.observe(item));
-    }
-    const heroSubtitle = document.querySelector('.hero-rotator');
-    if (heroSubtitle) {
-      const heroRoles = ["Autonomous Systems Engineer", "FIRST Tech Challenge Captain", "National Robotics Finalist", "STEM Outreach Mentor"];
-      let roleIndex = 0;
-      setInterval(() => {
-        heroSubtitle.classList.add('hide');
-        setTimeout(() => {
-          roleIndex = (roleIndex + 1) % heroRoles.length;
-          heroSubtitle.textContent = heroRoles[roleIndex];
-          heroSubtitle.classList.remove('hide');
-        }, 400);
-      }, 3200);
-    }
-  </script>
-</body>
-</html>
+  );
+}
