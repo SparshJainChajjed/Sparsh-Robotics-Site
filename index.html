@@ -4,171 +4,182 @@
   <meta charset="UTF-8" />
   <title>Achievements & Recognition</title>
   <style>
+    :root {
+      --bg: #020617;
+      --card-bg: #020617;
+      --border: #0f766e;
+      --line: #0f172a;
+      --accent: #22c55e;
+      --accent-soft: #14b8a6;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --title: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #020617;
-      color: #e5e7eb;
+      background: var(--bg);
+      color: var(--text-main);
     }
 
     .achievements-section {
       min-height: 100vh;
-      padding: 80px 16px;
-      background: radial-gradient(circle at top, #0ea5e9 0, transparent 55%),
-                  radial-gradient(circle at bottom, #22c55e22 0, transparent 55%),
-                  #020617;
+      padding: 72px 16px 96px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      justify-content: center;
     }
 
     .achievements-container {
       width: 100%;
-      max-width: 1120px;
+      max-width: 1100px;
     }
 
-    .section-title {
+    .achievements-header {
       text-align: center;
-      font-size: 2.6rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .section-title span {
-      color: #22c55e;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 0.95rem;
-      color: #9ca3af;
       margin-bottom: 56px;
     }
 
+    .achievements-title {
+      font-size: 2.6rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .achievements-title span {
+      color: var(--accent-soft);
+    }
+
+    .achievements-underline {
+      width: 72px;
+      height: 4px;
+      border-radius: 999px;
+      margin: 16px auto 18px;
+      background: linear-gradient(90deg, var(--accent-soft), var(--accent));
+    }
+
+    .achievements-subtitle {
+      margin: 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Timeline core */
+
     .timeline {
       position: relative;
-      padding: 0 0 40px;
-      margin: 0 auto;
+      margin-top: 40px;
+      padding: 0 0 32px;
     }
 
-    /* Center vertical line */
-    .timeline::before {
-      content: "";
+    .timeline-line {
       position: absolute;
-      left: 50%;
       top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
       transform: translateX(-50%);
-      width: 3px;
-      height: 100%;
-      background: linear-gradient(to bottom, #22c55e, #0ea5e9);
-      opacity: 0.7;
+      background: var(--line);
     }
 
-    .timeline-year-badge {
+    .timeline-year {
       position: relative;
-      margin: 0 auto 32px;
       width: max-content;
+      margin: 0 auto 32px;
       padding: 10px 28px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+      background: linear-gradient(135deg, #06b6d4, #22c55e);
       color: #020617;
       font-weight: 700;
       font-size: 0.95rem;
-      box-shadow: 0 18px 45px rgba(34, 197, 94, 0.35);
-    }
-
-    .timeline-group {
-      margin-bottom: 40px;
+      box-shadow: 0 12px 26px rgba(34, 197, 94, 0.35);
+      z-index: 2;
     }
 
     .timeline-item {
       position: relative;
       width: 50%;
       padding: 12px 24px;
-      box-sizing: border-box;
     }
 
-    .timeline-item.left {
+    .timeline-item-left {
       float: left;
-      text-align: right;
-      clear: both;
+      text-align: left;
+      transform: translateX(-16px);
     }
 
-    .timeline-item.right {
+    .timeline-item-right {
       float: right;
       text-align: left;
-      clear: both;
+      transform: translateX(16px);
     }
 
-    /* Dot on the center line */
-    .timeline-item::before {
-      content: "";
+    .timeline-dot {
       position: absolute;
       top: 28px;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 999px;
       background: #020617;
-      border: 3px solid #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+      border: 3px solid var(--accent-soft);
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.16);
+      z-index: 2;
     }
 
-    .timeline-item.left::before {
-      right: -7px;
+    .timeline-item-left .timeline-dot {
+      right: -6px;
     }
 
-    .timeline-item.right::before {
-      left: -7px;
+    .timeline-item-right .timeline-dot {
+      left: -6px;
     }
 
     .timeline-card {
-      display: inline-block;
-      max-width: 440px;
-      padding: 18px 22px;
-      border-radius: 18px;
-      background: radial-gradient(circle at top left, #0f172a, #020617);
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8);
-    }
-
-    .timeline-card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--card-bg);
+      border: 1px solid rgba(15, 118, 110, 0.7);
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.7);
     }
 
     .timeline-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, #22c55e, #0ea5e9);
+      background: linear-gradient(135deg, #22c55e, #06b6d4);
       color: #020617;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       flex-shrink: 0;
     }
 
-    .timeline-title {
-      font-size: 1.02rem;
+    .timeline-content-title {
+      font-size: 1rem;
       font-weight: 600;
-      color: #e5e7eb;
+      color: var(--title);
+      margin: 0 0 4px;
     }
 
-    .timeline-meta {
-      font-size: 0.83rem;
-      color: #a5b4fc;
-      margin-bottom: 4px;
+    .timeline-content-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin: 0;
     }
 
-    .timeline-desc {
-      font-size: 0.85rem;
-      color: #9ca3af;
+    .timeline-group {
+      margin-bottom: 40px;
+      position: relative;
     }
 
-    /* Clear floats */
     .timeline::after {
       content: "";
       display: block;
@@ -176,29 +187,27 @@
     }
 
     /* Responsive */
+
     @media (max-width: 768px) {
-      .timeline::before {
-        left: 18px;
+      .timeline-line {
+        left: 20px;
       }
 
-      .timeline-item {
+      .timeline-item,
+      .timeline-item-left,
+      .timeline-item-right {
         width: 100%;
-        padding-left: 44px;
-        padding-right: 8px;
-      }
-
-      .timeline-item.left,
-      .timeline-item.right {
-        text-align: left;
         float: none;
+        transform: none;
+        padding: 10px 0 10px 44px;
       }
 
-      .timeline-item::before {
-        left: 11px;
+      .timeline-item .timeline-dot {
+        left: 14px;
       }
 
       .timeline-card {
-        max-width: 100%;
+        width: 100%;
       }
     }
   </style>
@@ -206,309 +215,272 @@
 <body>
   <section class="achievements-section">
     <div class="achievements-container">
-      <h2 class="section-title">Achievements <span>& Recognition</span></h2>
-      <p class="section-subtitle">
-        A timeline of milestones and recognitions in my journey.
-      </p>
+      <header class="achievements-header">
+        <h2 class="achievements-title">
+          Achievements & <span>Recognition</span>
+        </h2>
+        <div class="achievements-underline"></div>
+        <p class="achievements-subtitle">
+          A timeline of milestones and recognitions in my journey.
+        </p>
+      </header>
 
       <div class="timeline">
+        <div class="timeline-line"></div>
+
         <!-- 2025 -->
         <div class="timeline-group">
-          <div class="timeline-year-badge">2025</div>
+          <div class="timeline-year">2025</div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🏆</div>
-                <div class="timeline-title">MCA CodeNest 2025 – 1st Place</div>
+              <div class="timeline-icon">🏆</div>
+              <div>
+                <p class="timeline-content-title">MCA CodeNest 2025 – 1st Place</p>
+                <p class="timeline-content-text">Prizes worth ₹7,000.</p>
               </div>
-              <div class="timeline-meta">Winner • Prizes worth ₹7,000</div>
-              <p class="timeline-desc">
-                Secured 1st place among competing teams with an innovative tech solution.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">⭐</div>
-                <div class="timeline-title">Green Pioneers 2025 – Award</div>
+              <div class="timeline-icon">⭐</div>
+              <div>
+                <p class="timeline-content-title">Green Pioneers 2025 – Award</p>
+                <p class="timeline-content-text">“Most Impactful Project” • ₹5,000 prize.</p>
               </div>
-              <div class="timeline-meta">“Most Impactful Project” • ₹5,000 prize</div>
-              <p class="timeline-desc">
-                Recognised for strong environmental impact and scalability in sustainability.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🎖️</div>
-                <div class="timeline-title">Biomimicry Build-a-thon 2025</div>
+              <div class="timeline-icon">🎖️</div>
+              <div>
+                <p class="timeline-content-title">Biomimicry Build-a-thon 2025</p>
+                <p class="timeline-content-text">Honourable Mention • ₹1,000 cash prize.</p>
               </div>
-              <div class="timeline-meta">Honourable Mention • ₹1,000 cash prize</div>
-              <p class="timeline-desc">
-                Earned special recognition for a nature-inspired engineering concept.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🏅</div>
-                <div class="timeline-title">Student Hacks 2025</div>
+              <div class="timeline-icon">🏅</div>
+              <div>
+                <p class="timeline-content-title">Student Hacks 2025</p>
+                <p class="timeline-content-text">Top 20 teams.</p>
               </div>
-              <div class="timeline-meta">Top 20 Teams</div>
-              <p class="timeline-desc">
-                Ranked in the top 20 teams in a competitive student hackathon.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🌱</div>
-                <div class="timeline-title">Mega Hackathon 2025</div>
+              <div class="timeline-icon">🌱</div>
+              <div>
+                <p class="timeline-content-title">Mega Hackathon 2025 – Sustainability Award</p>
+                <p class="timeline-content-text">Prizes worth over ₹10,000.</p>
               </div>
-              <div class="timeline-meta">Sustainability Award • ₹10,000+ in prizes</div>
-              <p class="timeline-desc">
-                Awarded for impactful work in sustainability and climate-focused innovation.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🏆</div>
-                <div class="timeline-title">CodePi 2025</div>
+              <div class="timeline-icon">🏆</div>
+              <div>
+                <p class="timeline-content-title">CodePi 2025 – Multiple Wins</p>
+                <p class="timeline-content-text">2nd places & top ranks • prizes over ₹50,000.</p>
               </div>
-              <div class="timeline-meta">Multiple podium finishes • ₹50,000+ prizes</div>
-              <p class="timeline-desc">
-                Achieved several 2nd-place and top-tier ranks across hackathon and ideathon tracks.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">💰</div>
-                <div class="timeline-title">Code Kong</div>
+              <div class="timeline-icon">💰</div>
+              <div>
+                <p class="timeline-content-title">Code Kong – 1st Place</p>
+                <p class="timeline-content-text">₹15,000 cash prize.</p>
               </div>
-              <div class="timeline-meta">1st Place • ₹15,000 cash prize</div>
-              <p class="timeline-desc">
-                Won 1st place in a technology-focused competition with a health-tech solution.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">📜</div>
-                <div class="timeline-title">Maximally Startup Make-a-thon</div>
+              <div class="timeline-icon">📜</div>
+              <div>
+                <p class="timeline-content-title">Maximally Startup Make-a-thon</p>
+                <p class="timeline-content-text">Certificate of Appreciation.</p>
               </div>
-              <div class="timeline-meta">Certificate of Appreciation</div>
-              <p class="timeline-desc">
-                Recognised for entrepreneurship and innovation in a startup-themed make-a-thon.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🚀</div>
-                <div class="timeline-title">Empower Hacks 2.0</div>
+              <div class="timeline-icon">🚀</div>
+              <div>
+                <p class="timeline-content-title">Empower Hacks 2.0</p>
+                <p class="timeline-content-text">4th & 6th place.</p>
               </div>
-              <div class="timeline-meta">4th & 6th Place</div>
-              <p class="timeline-desc">
-                Secured multiple top-10 finishes with solutions in emergency response and sustainability.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🎯</div>
-                <div class="timeline-title">SDGs in Practice</div>
+              <div class="timeline-icon">🎯</div>
+              <div>
+                <p class="timeline-content-title">SDGs in Practice</p>
+                <p class="timeline-content-text">Top 10 teams.</p>
               </div>
-              <div class="timeline-meta">Top 10</div>
-              <p class="timeline-desc">
-                Ranked among the top 10 entries for work aligned with the UN Sustainable Development Goals.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">📌</div>
-                <div class="timeline-title">Deckathon</div>
+              <div class="timeline-icon">📌</div>
+              <div>
+                <p class="timeline-content-title">Deckathon</p>
+                <p class="timeline-content-text">Certificate of Excellence.</p>
               </div>
-              <div class="timeline-meta">Certificate of Excellence</div>
-              <p class="timeline-desc">
-                Earned excellence recognition for a high-impact pitch deck.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🧠</div>
-                <div class="timeline-title">Hobby2Hustle Hackathon</div>
+              <div class="timeline-icon">🧠</div>
+              <div>
+                <p class="timeline-content-title">Hobby2Hustle Hackathon</p>
+                <p class="timeline-content-text">Selected & showcased.</p>
               </div>
-              <div class="timeline-meta">Selected & showcased</div>
-              <p class="timeline-desc">
-                Project selected and showcased in a hackathon focused on turning hobbies into ventures.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">❤️</div>
-                <div class="timeline-title">Hack4Health</div>
+              <div class="timeline-icon">❤️</div>
+              <div>
+                <p class="timeline-content-title">Hack4Health – 1st Place</p>
+                <p class="timeline-content-text">Health-tech focused hackathon.</p>
               </div>
-              <div class="timeline-meta">1st Place</div>
-              <p class="timeline-desc">
-                Won 1st place in a healthcare innovation hackathon.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🧪</div>
-                <div class="timeline-title">MicroLabs Fever Hackathon 2025</div>
+              <div class="timeline-icon">🧪</div>
+              <div>
+                <p class="timeline-content-title">MicroLabs Fever Hackathon 2025</p>
+                <p class="timeline-content-text">Top 15 teams.</p>
               </div>
-              <div class="timeline-meta">Top 15 Teams</div>
-              <p class="timeline-desc">
-                Ranked within the top 15 teams in a medical and diagnostics-focused challenge.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🇮🇳</div>
-                <div class="timeline-title">1M1B Changemakers World Cup</div>
+              <div class="timeline-icon">🇮🇳</div>
+              <div>
+                <p class="timeline-content-title">1M1B Changemakers World Cup</p>
+                <p class="timeline-content-text">Top 50 rank nationwide.</p>
               </div>
-              <div class="timeline-meta">Top 50 Rank Nationwide</div>
-              <p class="timeline-desc">
-                Recognised among the top 50 changemakers in India for impactful social innovation.
-              </p>
             </div>
           </div>
         </div>
 
         <!-- 2024 -->
         <div class="timeline-group">
-          <div class="timeline-year-badge">2024</div>
+          <div class="timeline-year">2024</div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🏆</div>
-                <div class="timeline-title">National Automation Robotics Challenge 2024</div>
+              <div class="timeline-icon">🏆</div>
+              <div>
+                <p class="timeline-content-title">National Automation Robotics Challenge 2024</p>
+                <p class="timeline-content-text">1st place • ₹8,000 prize.</p>
               </div>
-              <div class="timeline-meta">1st Place • ₹8,000 prize</div>
-              <p class="timeline-desc">
-                Won 1st place in a national-level robotics and automation competition.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">⚡</div>
-                <div class="timeline-title">IEEE REPower 2024</div>
+              <div class="timeline-icon">⚡</div>
+              <div>
+                <p class="timeline-content-title">IEEE REPower 2024</p>
+                <p class="timeline-content-text">3rd place.</p>
               </div>
-              <div class="timeline-meta">3rd Place</div>
-              <p class="timeline-desc">
-                Secured 3rd place in an energy and power systems innovation challenge.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">💧</div>
-                <div class="timeline-title">Innovate H2O 2024</div>
+              <div class="timeline-icon">💧</div>
+              <div>
+                <p class="timeline-content-title">Innovate H2O 2024</p>
+                <p class="timeline-content-text">Winner • ₹10,000 funding.</p>
               </div>
-              <div class="timeline-meta">Winner • ₹10,000 funding</div>
-              <p class="timeline-desc">
-                Won a water-focused innovation contest with funding support for further development.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🏅</div>
-                <div class="timeline-title">Atal Marathon 2024</div>
+              <div class="timeline-icon">🏅</div>
+              <div>
+                <p class="timeline-content-title">Atal Marathon 2024</p>
+                <p class="timeline-content-text">Top 100 • funding & mentorship.</p>
               </div>
-              <div class="timeline-meta">Top 100 • Funding & mentorship</div>
-              <p class="timeline-desc">
-                Selected in the top 100 teams nationally with government support and mentorship.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🤝</div>
-                <div class="timeline-title">Hack4Humanity 2024</div>
+              <div class="timeline-icon">🤝</div>
+              <div>
+                <p class="timeline-content-title">Hack4Humanity 2024</p>
+                <p class="timeline-content-text">Honourable Mention.</p>
               </div>
-              <div class="timeline-meta">Honourable Mention</div>
-              <p class="timeline-desc">
-                Recognised for social-impact innovation in a humanitarian hackathon.
-              </p>
             </div>
           </div>
 
-          <div class="timeline-item left">
+          <div class="timeline-item timeline-item-left">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🔬</div>
-                <div class="timeline-title">Raman Awards 2024</div>
+              <div class="timeline-icon">🔬</div>
+              <div>
+                <p class="timeline-content-title">Raman Awards 2024</p>
+                <p class="timeline-content-text">National qualifier.</p>
               </div>
-              <div class="timeline-meta">National Qualifier</div>
-              <p class="timeline-desc">
-                Qualified at the national level in a prestigious science and innovation competition.
-              </p>
             </div>
           </div>
         </div>
 
         <!-- 2023 -->
         <div class="timeline-group">
-          <div class="timeline-year-badge">2023</div>
+          <div class="timeline-year">2023</div>
 
-          <div class="timeline-item right">
+          <div class="timeline-item timeline-item-right">
+            <span class="timeline-dot"></span>
             <div class="timeline-card">
-              <div class="timeline-card-header">
-                <div class="timeline-icon">🤖</div>
-                <div class="timeline-title">World Robot Olympiad (WRO)</div>
+              <div class="timeline-icon">🤖</div>
+              <div>
+                <p class="timeline-content-title">World Robot Olympiad (WRO)</p>
+                <p class="timeline-content-text">2nd place.</p>
               </div>
-              <div class="timeline-meta">2nd Place</div>
-              <p class="timeline-desc">
-                Achieved 2nd place in a robotics competition with global participation.
-              </p>
             </div>
           </div>
         </div>
